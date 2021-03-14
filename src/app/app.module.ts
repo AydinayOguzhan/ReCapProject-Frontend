@@ -10,6 +10,7 @@ import { BrandComponent } from './components/brand/brand.component';
 import { ColorComponent } from './components/color/color.component';
 import { CustomerComponent } from './components/customer/customer.component';
 import { RentalComponent } from './components/rental/rental.component';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [
