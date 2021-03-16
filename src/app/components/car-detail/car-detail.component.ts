@@ -3,9 +3,9 @@ import { Component, OnInit } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import { ActivatedRoute } from '@angular/router';
 import { Car } from 'src/app/models/car/car';
-import { CarDetail } from 'src/app/models/carDetails/carDetail';
 import { CarImage } from 'src/app/models/carImage/carImage';
 import { CarDetailService } from 'src/app/services/carDetailService/car-detail.service';
+import { CarService } from 'src/app/services/carService/car.service';
 
 @Component({
   selector: 'app-car-detail',
@@ -13,8 +13,7 @@ import { CarDetailService } from 'src/app/services/carDetailService/car-detail.s
   styleUrls: ['./car-detail.component.css']
 })
 export class CarDetailComponent implements OnInit {
-  carDetails: CarDetail[]
-  car: Car[]
+  cars: Car[]
   carImages: CarImage[]
 
   constructor(private carDetailService: CarDetailService, private activatedRoute: ActivatedRoute, private sanitizer:DomSanitizer) { }
@@ -31,15 +30,19 @@ export class CarDetailComponent implements OnInit {
     return newPath
   }
 
+
   getCarDetail(carId: number) {
     this.carDetailService.getCarById(carId).subscribe(response => {
-      this.car = response.data
+      this.cars = response.data
+      console.log(this.cars)
     })
   }
+
 
   getCarImagesByCarId(carId: number) {
     this.carDetailService.getCarImagesByCarId(carId).subscribe(response=>{
       this.carImages = response.data
+      console.log(this.carImages)
     })
   }
 }
