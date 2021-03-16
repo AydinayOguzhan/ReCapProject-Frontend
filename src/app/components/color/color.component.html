@@ -1,5 +1,14 @@
 <h4>Colors</h4>
 
 <ul class="list-group list-group-flush">
-    <li *ngFor="let color of colors" class="list-group-item">{{color.colorName}}</li>
+    <li [class]="resetCurrentColorClass()"
+      (click)="resetCurrentColor()"
+      routerLink="/cars"
+    >All Colors</li>
+
+    <li 
+    *ngFor="let color of colors" 
+    (click)="setCurrentColor(color)"
+    routerLink="/cars/color/{{color.id}}"
+    [class]="setCurrentColorClass(color)">{{color.colorName}}</li>
   </ul>

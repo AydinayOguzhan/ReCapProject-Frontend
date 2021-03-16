@@ -43,7 +43,7 @@ export class BrandComponent implements OnInit {
     this.currentBrand = brand
   }
 
-  getCurrentBrandClass(brand:Brand){
+  setCurrentBrandClass(brand:Brand){
     if(this.currentBrand == brand){
       return "list-group-item active"
     }else{
