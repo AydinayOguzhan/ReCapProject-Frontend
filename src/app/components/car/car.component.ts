@@ -11,6 +11,8 @@ import { CarService } from 'src/app/services/carService/car.service';
 export class CarComponent implements OnInit {
   cars: Car[] = [];
   currentCar:Car
+  filterText:string=""
+  
 
   constructor(private carService: CarService, private activatedRoute:ActivatedRoute) { }
 
@@ -47,5 +49,6 @@ export class CarComponent implements OnInit {
   setCurrentCar(car:Car){
     this.currentCar = car
   }
+
 
 }

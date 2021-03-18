@@ -1,3 +1,17 @@
+<br>
+<div class="row">
+    <!-- <label for="filterText" class="form-label">Search Brand</label> -->
+    <div class="col-md-2"></div>
+    <div class="col-md-8">
+        <input type="text" [(ngModel)]="filterText" class="form-control" id="filterText" placeholder="Search">
+    </div>
+    <div class="col-md-2"></div>
+</div>
+<div *ngIf="filterText" class="alert alert-success">
+    You searched this: {{filterText}}
+</div>
+<br>
+
 <table class="table table-striped table-dark table-bordered">
     <thead>
         <tr>
@@ -9,14 +23,11 @@
         </tr>
     </thead>
     <tbody>
-        <tr *ngFor="let car of cars"
-        (click)="setCurrentCar(car)"
-        routerLink="/cardetails/{{car.carId}}"
-        >
-            <td>{{car.brandName}}</td>
+        <tr *ngFor="let car of cars |brandFilter:filterText" (click)="setCurrentCar(car)" routerLink="/cardetails/{{car.carId}}">
+            <td>{{car.brandName }}</td>
             <td>{{car.colorName}}</td>
             <td>{{car.modelYear}}</td>
-            <td>{{car.dailyPrice}}</td>
+            <td>{{car.dailyPrice |currency}}</td>
             <td>{{car.carDescription}}</td>
         </tr>
     </tbody>
