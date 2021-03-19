@@ -1,60 +1,54 @@
-<div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
-    <div class="carousel-inner">
-        <div *ngFor="let image of carImages let i = index" [ngClass]="{'active': i == 0}" class="carousel-item ">
-            <img [src]="setImageSource(image.imagePath)" class="d-block w-100" alt="Resim yok">
-        </div>
-    </div>
-    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
-        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-        <span class="visually-hidden">Previous</span>
-    </button>
-    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
-        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-        <span class="visually-hidden">Next</span>
-    </button>
-</div>
-
 <br />
 <div class="accordion" id="accordionExample">
   <div class="accordion-item">
     <h2 class="accordion-header" id="headingOne">
-      <button
-        class="accordion-button"
-        type="button"
-        data-bs-toggle="collapse"
-        data-bs-target="#collapseOne"
-        aria-expanded="true"
-        aria-controls="collapseOne"
-      >
+      <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne"
+        aria-expanded="true" aria-controls="collapseOne">
         Araç Detayları
       </button>
     </h2>
-    <div
-      id="collapseOne"
-      class="accordion-collapse collapse show"
-      aria-labelledby="headingOne"
-      data-bs-parent="#accordionExample"
-    >
+    <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne"
+      data-bs-parent="#accordionExample">
       <div class="accordion-body">
         <table class="table">
-            <thead>
-              <tr>
-                <th>Marka</th>
-                <th>Color</th>
-                <th>Model</th>
-                <th>Fiyat</th>
-                <th>Açıklama</th>
-              </tr>
-            </thead>
+          <thead>
+            <tr>
+              <th>Brand</th>
+              <th>Color</th>
+              <th>Model</th>
+              <th>Price</th>
+              <th>Description</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
             <tr *ngFor="let car of cars">
               <td>{{ car.brandName }}</td>
               <td>{{ car.colorName }}</td>
               <td>{{ car.modelYear }}</td>
               <td>{{ car.dailyPrice }}</td>
               <td>{{ car.carDescription }}</td>
+              <td><button class="btn btn-success" (click)="buy(car)" routerLink="/buy/{{car}}">Rent</button></td>
             </tr>
-          </table>
+          </tbody>
+        </table>
       </div>
     </div>
   </div>
+</div>
+<br><br>
+<div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+  <div class="carousel-inner">
+    <div *ngFor="let image of carImages let i = index" [ngClass]="{'active': i == 0}" class="carousel-item ">
+      <img [src]="setImageSource(image.imagePath)" class="d-block w-100" alt="Resim yok">
+    </div>
+  </div>
+  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Previous</span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
 </div>
