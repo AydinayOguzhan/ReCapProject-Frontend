@@ -6,6 +6,7 @@ import { CarComponent } from './components/car/car.component';
 import { CustomerComponent } from './components/customer/customer.component';
 import { RentalComponent } from './components/rental/rental.component';
 
+
 const routes: Routes = [
   {path:"",component:CarComponent},
   {path:"cars",component:CarComponent},
