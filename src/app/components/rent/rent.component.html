@@ -1,0 +1,121 @@
+<br><br><br>
+<div class="accordion" id="accordionExample">
+    <div class="accordion-item">
+        <h2 class="accordion-header" id="headingOne">
+            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne"
+                aria-expanded="true" aria-controls="collapseOne">
+                Car details that you'll rent
+            </button>
+        </h2>
+        <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne"
+            data-bs-parent="#accordionExample">
+            <div class="accordion-body">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Brand</th>
+                            <th>Color</th>
+                            <th>Model</th>
+                            <th>Price</th>
+                            <th>Description</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>{{ currentCar.brandName }}</td>
+                            <td>{{ currentCar.colorName }}</td>
+                            <td>{{ currentCar.modelYear }}</td>
+                            <td>{{ currentCar.dailyPrice }}</td>
+                            <td>{{ currentCar.carDescription }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <br> <br> <br>
+        <div class="content">
+            <div class="row">
+                <div class="col-md-2"></div>
+                <div class="col-md-8">
+                    <div class="card">
+                        <div class="card-header">
+                            <h5 class="title">Please enter your credit card informations</h5>
+                        </div>
+                        <div class="card-body">
+                            <form [formGroup]="rentForm ">
+                                <div class="mb-3">
+                                    <div class="row">
+                                        <div class="col-md-3"></div>
+                                        <div class="col-md-6">
+                                            <label for="cardNumber">Card Number</label>
+                                            <div class="form-group">
+                                                <input type="number" id="cardNumber" formControlName="cardNumber"
+                                                    class="form-control" placeholder="Card Number">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="mb-3">
+                                    <div class="row">
+                                        <div class="col-md-3"></div>
+                                        <div class="col-md-6">
+                                            <label for="cardName">Name on card</label>
+                                            <div class="form-group">
+                                                <input type="text" id="cardName" formControlName="cardName"
+                                                    class="form-control" placeholder="Name on card">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="mb-3">
+                                    <div class="row">
+                                        <div class="col-md-3"></div>
+                                        <div class="col-md-2">
+                                            <label for="expiration">Expiration</label>
+                                            <div class="form-group">
+                                                <input type="number" id="cardMonth" formControlName="cardMonth"
+                                                    class="form-control" placeholder="Month">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <label></label>
+                                            <div class="form-group">
+                                                <input type="number" id="cardYear" formControlName="cardYear"
+                                                    class="form-control" placeholder="Year">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+
+                                <div class="mb-3">
+                                    <div class="row">
+                                        <div class="col-md-3"></div>
+                                        <div class="col-md-6">
+                                            <label for="cardSecurityNumber">CVV</label>
+                                            <div class="form-group">
+                                                <input type="text" id="cardSecurityNumber"
+                                                    formControlName="cardSecurityNumber" class="form-control"
+                                                    placeholder="CVV">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </form>
+
+                            <div class="card-footer">
+                                <div class="d-grid gap-2">
+                                    <button class="btn btn-primary" (click)="rent()">Rent</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>

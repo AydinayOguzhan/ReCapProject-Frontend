@@ -4,7 +4,7 @@
     <h2 class="accordion-header" id="headingOne">
       <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne"
         aria-expanded="true" aria-controls="collapseOne">
-        Araç Detayları
+        Car Details
       </button>
     </h2>
     <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne"
@@ -22,13 +22,13 @@
             </tr>
           </thead>
           <tbody>
-            <tr *ngFor="let car of cars">
+            <tr>
               <td>{{ car.brandName }}</td>
               <td>{{ car.colorName }}</td>
               <td>{{ car.modelYear }}</td>
               <td>{{ car.dailyPrice }}</td>
               <td>{{ car.carDescription }}</td>
-              <td><button class="btn btn-success" (click)="buy(car)" routerLink="/buy/{{car}}">Rent</button></td>
+              <td><button class="btn btn-success" (click)="buy(car)" routerLink="/rent/{{car.carId}}">Rent</button></td>
             </tr>
           </tbody>
         </table>

@@ -5,6 +5,7 @@ import { Car } from 'src/app/models/car/car';
 import { CarDetail } from 'src/app/models/carDetails/carDetail';
 import { CarImage } from 'src/app/models/carImage/carImage';
 import { ListResponseModel } from 'src/app/models/listResponseModel';
+import { SingleResponseModel } from 'src/app/models/singleResponseModel';
 
 @Injectable({
   providedIn: 'root'
@@ -14,9 +15,9 @@ export class CarDetailService {
 
   constructor(private httpClient:HttpClient) { }
 
-  getCarById(carId:number):Observable<ListResponseModel<Car>>{
-    let newPath = this.apiUrl + "cars/getbyidlist?id=" + carId
-    return this.httpClient.get<ListResponseModel<Car>>(newPath)
+  getCarById(carId:number):Observable<SingleResponseModel<Car>>{
+    let newPath = this.apiUrl + "cars/getdetailsbycarid?id=" + carId
+    return this.httpClient.get<SingleResponseModel<Car>>(newPath)
   }
 
   getCarImagesByCarId(carId:number):Observable<ListResponseModel<CarImage>>{
