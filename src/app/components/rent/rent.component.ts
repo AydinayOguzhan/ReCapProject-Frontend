@@ -57,6 +57,7 @@ export class RentComponent implements OnInit {
     })
   }
 
+  //TODO: Api'ye bağlanıp kredi kartı kayıt işlemlerini yap.
   rent(){
     if (this.rentForm.valid) {
       if (this.canRent == true) {

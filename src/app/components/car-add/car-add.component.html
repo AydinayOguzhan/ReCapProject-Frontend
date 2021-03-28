@@ -1,0 +1,94 @@
+<br> <br> <br>
+<div class="content">
+    <div class="row">
+        <div class="col-md-2"></div>
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="title">Enter car informations</h5>
+                </div>
+                <div class="card-body">
+                    <form [formGroup]="carAddForm ">
+                        <div class="mb-3">
+                            <div class="row">
+                                <div class="col-md-3"></div>
+                                <div class="col-md-6">
+                                    <label for="brand">Brand</label>
+                                    <div class="form-group">
+                                        <select class="form-select" formControlName="brandId" >
+                                            <option disabled selected value=0>Select brand</option>
+                                            <option *ngFor="let brand of brands" 
+                                            [ngValue]="brand.id">{{brand.brandName}}</option>
+                                          </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="mb-3">
+                            <div class="row">
+                                <div class="col-md-3"></div>
+                                <div class="col-md-6">
+                                    <label for="color">Color</label>
+                                    <div class="form-group">
+                                        <select  class="form-select" formControlName="colorId">
+                                            <option disabled selected value=0>Select Color</option>
+                                            <option *ngFor="let color of colors" (click)="setCurrentColor(color.id)" 
+                                            [ngValue]="color.id">{{color.colorName}}</option>
+                                          </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="mb-3">
+                            <div class="row">
+                                <div class="col-md-3"></div>
+                                <div class="col-md-6">
+                                    <label for="modelYear">Model Year</label>
+                                    <div class="form-group">
+                                        <input type="number" id="modelYear" formControlName="modelYear"
+                                            class="form-control" placeholder="Year">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="mb-3">
+                            <div class="row">
+                                <div class="col-md-3"></div>
+                                <div class="col-md-6">
+                                    <label for="dailyPrice">Daily Price</label>
+                                    <div class="form-group">
+                                        <input type="number" id="dailyPrice" formControlName="dailyPrice"
+                                            class="form-control" placeholder="Price">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="mb-3">
+                            <div class="row">
+                                <div class="col-md-3"></div>
+                                <div class="col-md-6">
+                                    <label for="description">Car Description</label>
+                                    <div class="form-group">
+                                        <input type="text" id="description" formControlName="description"
+                                            class="form-control" placeholder="Description">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </form>
+
+                    <div class="card-footer">
+                        <div class="d-grid gap-2">
+                            <button class="btn btn-success" (click)="add()">Add</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

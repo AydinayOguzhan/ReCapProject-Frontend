@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Car } from 'src/app/models/car/car';
+import { CarDetail } from 'src/app/models/carDetails/carDetail';
 import { CarService } from 'src/app/services/carService/car.service';
 
 @Component({
@@ -9,7 +10,7 @@ import { CarService } from 'src/app/services/carService/car.service';
   styleUrls: ['./car.component.css']
 })
 export class CarComponent implements OnInit {
-  cars: Car[] = [];
+  cars: CarDetail[] = [];
   currentCar:Car
   filterText:string=""
   

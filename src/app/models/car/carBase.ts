@@ -1,5 +1,5 @@
-export interface Car{
-    id:number,
+export interface CarBase{
+    carId:number,
     brandId:number,
     colorId:number,
     modelYear:number,

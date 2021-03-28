@@ -20,6 +20,8 @@ import { CarFilterPipe } from './pipes/carFilterPipe/car-filter.pipe';
 import { BrandFilterPipe } from './pipes/brandFilter/brand-filter.pipe';
 import { ColorFilterPipe } from './pipes/colorFilter/color-filter.pipe';
 import { RentComponent } from './components/rent/rent.component';
+import { ViewCarComponent } from './components/view-car/view-car.component';
+import { CarAddComponent } from './components/car-add/car-add.component';
 
 @NgModule({
   declarations: [
@@ -35,6 +37,8 @@ import { RentComponent } from './components/rent/rent.component';
     BrandFilterPipe,
     ColorFilterPipe,
     RentComponent,
+    ViewCarComponent,
+    CarAddComponent,
   ],
   imports: [
     BrowserModule,

@@ -23,12 +23,12 @@
           </thead>
           <tbody>
             <tr>
-              <td>{{ car.brandName }}</td>
-              <td>{{ car.colorName }}</td>
-              <td>{{ car.modelYear }}</td>
-              <td>{{ car.dailyPrice }}</td>
-              <td>{{ car.carDescription }}</td>
-              <td><button class="btn btn-success" (click)="buy(car)" routerLink="/rent/{{car.carId}}">Rent</button></td>
+              <td>{{ car?.brandName }}</td>
+              <td>{{ car?.colorName }}</td>
+              <td>{{ car?.modelYear }}</td>
+              <td>{{ car?.dailyPrice }}</td>
+              <td>{{ car?.carDescription }}</td>
+              <td><button class="btn btn-success" (click)="buy(car)" routerLink="/rent/{{car?.carId}}">Rent</button></td>
             </tr>
           </tbody>
         </table>
