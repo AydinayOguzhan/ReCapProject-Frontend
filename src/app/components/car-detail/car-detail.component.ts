@@ -14,10 +14,11 @@ import { CarService } from 'src/app/services/carService/car.service';
   styleUrls: ['./car-detail.component.css']
 })
 export class CarDetailComponent implements OnInit {
-  car: Car
+  car: CarDetail
   carImages: CarImage[]
 
-  constructor(private carDetailService: CarDetailService, private activatedRoute: ActivatedRoute, private sanitizer:DomSanitizer) { }
+  constructor(private carDetailService: CarDetailService, private activatedRoute: ActivatedRoute, private sanitizer:DomSanitizer,
+    private carService:CarService) { }
 
   ngOnInit(): void {
     this.activatedRoute.params.subscribe(params => {
@@ -46,6 +47,6 @@ export class CarDetailComponent implements OnInit {
     })
   }
 
-  buy(car:Car){
+  buy(car:CarDetail){
   }
 }

@@ -15,9 +15,14 @@ export class CarDetailService {
 
   constructor(private httpClient:HttpClient) { }
 
-  getCarById(carId:number):Observable<SingleResponseModel<Car>>{
+  getAll():Observable<ListResponseModel<CarImage>>{
+    let newPath = this.apiUrl + "carimages/getall"
+    return this.httpClient.get<ListResponseModel<CarImage>>(newPath)
+  }
+
+  getCarById(carId:number):Observable<SingleResponseModel<CarDetail>>{
     let newPath = this.apiUrl + "cars/getdetailsbycarid?id=" + carId
-    return this.httpClient.get<SingleResponseModel<Car>>(newPath)
+    return this.httpClient.get<SingleResponseModel<CarDetail>>(newPath)
   }
 
   getCarImagesByCarId(carId:number):Observable<ListResponseModel<CarImage>>{

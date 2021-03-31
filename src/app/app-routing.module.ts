@@ -2,11 +2,12 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { CarAddComponent } from './components/car-add/car-add.component';
 import { CarDetailComponent } from './components/car-detail/car-detail.component';
+import { CarUpdateComponent } from './components/car-update/car-update.component';
 import { CarComponent } from './components/car/car.component';
 import { CustomerComponent } from './components/customer/customer.component';
 import { RentComponent } from './components/rent/rent.component';
 import { RentalComponent } from './components/rental/rental.component';
-import { ViewCarComponent } from './components/view-car/view-car.component';
+import { ViewCarComponent } from './components/car-view/view-car.component';
 
 
 const routes: Routes = [
@@ -22,7 +23,7 @@ const routes: Routes = [
   {path:"rent/:carId",component:RentComponent},
   {path:"admin/view/car",component:ViewCarComponent},
   {path:"admin/add/car",component:CarAddComponent},
-  {path:"admin/update/car/:carId",component:CarAddComponent},
+  {path:"admin/update/car/:carId",component:CarUpdateComponent},
 
   {path:"admin/view/brand",component:RentComponent},
   {path:"admin/add/brand/:brandId",component:RentComponent},

@@ -2,9 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { Car } from 'src/app/models/car/car';
-import { CarBase } from 'src/app/models/car/carBase';
 import { CarDetail } from 'src/app/models/carDetails/carDetail';
+import { CarImage } from 'src/app/models/carImage/carImage';
+import { CarDetailService } from 'src/app/services/carDetailService/car-detail.service';
 import { CarService } from 'src/app/services/carService/car.service';
+import { DomSanitizer } from '@angular/platform-browser';
+import { VirtualTimeScheduler } from 'rxjs';
 
 @Component({
   selector: 'app-view-car',
@@ -14,18 +17,22 @@ import { CarService } from 'src/app/services/carService/car.service';
 export class ViewCarComponent implements OnInit {
   carDetails: CarDetail[]
   cars: Car[]
-  currentCar: CarBase
+  currentCar:Car
+  carImages:CarImage[]
 
-  constructor(private carService: CarService, private toastr: ToastrService, private router: Router) { }
+  constructor(private carService: CarService, private toastr: ToastrService,
+     private router: Router, private carDetailService:CarDetailService, private sanitizer:DomSanitizer) { }
 
   ngOnInit(): void {
     this.getCars()
     this.get()
+    this.getAll()
   }
 
   getCars() {
     this.carService.getCars().subscribe(response => {
       this.carDetails = response.data
+      // console.log(this.carDetails)
     }, errorResult => {
       this.toastr.error("Bir hata oluştu", "Üzgünüz")
     })
@@ -61,4 +68,15 @@ export class ViewCarComponent implements OnInit {
     }
   }
 
+  getAll() {
+    this.carDetailService.getAll().subscribe(response=>{
+      this.carImages = response.data
+    })
+  }
+
+
+  goUpdate(carId:number){  
+    let newUrl = "admin/update/car/" + carId
+    this.router.navigateByUrl(newUrl)  
+  }
 }

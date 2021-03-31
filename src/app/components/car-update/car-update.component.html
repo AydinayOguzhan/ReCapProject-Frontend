@@ -5,10 +5,10 @@
         <div class="col-md-8">
             <div class="card">
                 <div class="card-header">
-                    <h5 class="title">Enter car informations</h5>
+                    <h5 class="title">Update car informations</h5>
                 </div>
                 <div class="card-body">
-                    <form [formGroup]="carAddForm">
+                    <form *ngIf="waitForData" [formGroup]="carUpdateForm">
                         <div class="mb-3">
                             <div class="row">
                                 <div class="col-md-3"></div>
@@ -84,7 +84,7 @@
 
                     <div class="card-footer">
                         <div class="d-grid gap-2">
-                            <button class="btn btn-success" (click)="add()">Add</button>
+                            <button class="btn btn-success" (click)="update()">Update</button>
                         </div>
                     </div>
                 </div>
