@@ -1,0 +1,24 @@
+<br><br>
+<div class="d-grid gap-2">
+    <button class="btn btn-outline-success" routerLink="/admin/add/brand">Add</button>
+</div>
+<br>
+
+<table class="table table-striped table-secondary table-bordered">
+    <thead>
+        <tr>
+            <th>Brand Id</th>
+            <th>Brand Name</th>
+            <th></th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let brand of brands">
+            <td>{{brand.id}}</td>
+            <td>{{brand.brandName }}</td>
+            <td><button class="btn btn-outline-success" (click)="goUpdate(brand.id)">Update</button></td>
+            <td><button class="btn btn-outline-danger" (click)="delete(brand)">Delete</button></td>
+        </tr>
+    </tbody>
+</table>

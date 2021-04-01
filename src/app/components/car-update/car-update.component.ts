@@ -71,7 +71,6 @@ export class CarUpdateComponent implements OnInit {
     this.carService.getById(carId).subscribe(response => {
       this.car = response.data
       this.waitForData = true
-      console.log(this.car.description)
       this.carUpdateForm.setValue({
         brandId: this.car.brandId, colorId: this.car.colorId, modelYear: this.car.modelYear,
         dailyPrice: this.car.dailyPrice, description: this.car.description

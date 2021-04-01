@@ -23,6 +23,9 @@ import { RentComponent } from './components/rent/rent.component';
 import { ViewCarComponent } from './components/car-view/view-car.component';
 import { CarAddComponent } from './components/car-add/car-add.component';
 import { CarUpdateComponent } from './components/car-update/car-update.component';
+import { BrandViewComponent } from './components/brand-view/brand-view.component';
+import { BrandAddComponent } from './components/brand-add/brand-add.component';
+import { BrandUpdateComponent } from './components/brand-update/brand-update.component';
 
 @NgModule({
   declarations: [
@@ -41,6 +44,9 @@ import { CarUpdateComponent } from './components/car-update/car-update.component
     ViewCarComponent,
     CarAddComponent,
     CarUpdateComponent,
+    BrandViewComponent,
+    BrandAddComponent,
+    BrandUpdateComponent,
   ],
   imports: [
     BrowserModule,

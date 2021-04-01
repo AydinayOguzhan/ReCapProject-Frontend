@@ -8,6 +8,9 @@ import { CustomerComponent } from './components/customer/customer.component';
 import { RentComponent } from './components/rent/rent.component';
 import { RentalComponent } from './components/rental/rental.component';
 import { ViewCarComponent } from './components/car-view/view-car.component';
+import { BrandViewComponent } from './components/brand-view/brand-view.component';
+import { BrandAddComponent } from './components/brand-add/brand-add.component';
+import { BrandUpdateComponent } from './components/brand-update/brand-update.component';
 
 
 const routes: Routes = [
@@ -21,14 +24,18 @@ const routes: Routes = [
   {path:"rentals",component:RentalComponent},
   {path:"rent", component:RentComponent},
   {path:"rent/:carId",component:RentComponent},
+
   {path:"admin/view/car",component:ViewCarComponent},
   {path:"admin/add/car",component:CarAddComponent},
   {path:"admin/update/car/:carId",component:CarUpdateComponent},
 
-  {path:"admin/view/brand",component:RentComponent},
-  {path:"admin/add/brand/:brandId",component:RentComponent},
-  {path:"admin/add/color/:colorId",component:RentComponent},
+  {path:"admin/view/brand",component:BrandViewComponent},
+  {path:"admin/add/brand",component:BrandAddComponent},
+  {path:"admin/update/brand/:brandId",component:BrandUpdateComponent},
+
+  {path:"admin/add/color/:colorId",component:BrandUpdateComponent},
   {path:"admin/view/color",component:RentComponent},
+
 ];
 
 @NgModule({

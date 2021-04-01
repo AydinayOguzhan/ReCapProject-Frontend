@@ -57,7 +57,6 @@ export class ViewCarComponent implements OnInit {
   delete(car: CarDetail) {
     for (let i = 0; i < this.cars.length; i++) {
       if (this.cars[i].id === car.carId) {
-        console.log(this.cars[i].id)
         this.carService.delete(this.cars[i]).subscribe(response => {
           window.location.reload()
           this.toastr.info("İşlem başarılı")
