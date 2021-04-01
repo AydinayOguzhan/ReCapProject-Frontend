@@ -11,6 +11,9 @@ import { ViewCarComponent } from './components/car-view/view-car.component';
 import { BrandViewComponent } from './components/brand-view/brand-view.component';
 import { BrandAddComponent } from './components/brand-add/brand-add.component';
 import { BrandUpdateComponent } from './components/brand-update/brand-update.component';
+import { ColorViewComponent } from './components/color-view/color-view.component';
+import { ColorAddComponent } from './components/color-add/color-add.component';
+import { ColorUpdateComponent } from './components/color-update/color-update.component';
 
 
 const routes: Routes = [
@@ -33,8 +36,9 @@ const routes: Routes = [
   {path:"admin/add/brand",component:BrandAddComponent},
   {path:"admin/update/brand/:brandId",component:BrandUpdateComponent},
 
-  {path:"admin/add/color/:colorId",component:BrandUpdateComponent},
-  {path:"admin/view/color",component:RentComponent},
+  {path:"admin/view/color",component:ColorViewComponent},
+  {path:"admin/add/color",component:ColorAddComponent},
+  {path:"admin/update/color/:colorId",component:ColorUpdateComponent},
 
 ];
 

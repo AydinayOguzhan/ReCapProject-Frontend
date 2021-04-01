@@ -1,0 +1,24 @@
+<br><br>
+<div class="d-grid gap-2">
+    <button class="btn btn-outline-success" routerLink="/admin/add/color">Add</button>
+</div>
+<br>
+
+<table class="table table-striped table-secondary table-bordered">
+    <thead>
+        <tr>
+            <th>Color Id</th>
+            <th>Color Name</th>
+            <th></th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let color of colors">
+            <td>{{color.id}}</td>
+            <td>{{color.colorName }}</td>
+            <td><button class="btn btn-outline-success" (click)="goUpdate(color.id)">Update</button></td>
+            <td><button class="btn btn-outline-danger" (click)="delete(color)">Delete</button></td>
+        </tr>
+    </tbody>
+</table>
