@@ -19,6 +19,27 @@
         </li>
       </ul>
       <ul class="navbar-nav ml-auto mx-5">
+        <li *ngIf="logged === false" class="nav-item">
+          <a routerLink="login" class="nav-link text-primary">Login</a>
+        </li>
+        <li *ngIf="logged === false" class="nav-item">
+          <a routerLink="register" class="nav-link text-primary">Sign up</a>
+        </li>
+
+        <li *ngIf="logged === true" class="nav-item dropdown mx-end">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
+            aria-expanded="false">
+            {{user?.firstName}} {{user?.lastName}}
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <li><a class="dropdown-item" routerLink="user/{{user?.id}}">Change user informations</a></li>
+          </ul>
+        </li>
+        
+        <li *ngIf="logged === true" class="nav-item">
+          <a (click)="logout()" href="" class="nav-link text-primary">Logout</a>
+        </li>
+
         <li class="nav-item dropdown mx-end">
           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
             aria-expanded="false">

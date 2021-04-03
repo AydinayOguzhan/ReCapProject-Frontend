@@ -14,6 +14,10 @@ import { BrandUpdateComponent } from './components/brand-update/brand-update.com
 import { ColorViewComponent } from './components/color-view/color-view.component';
 import { ColorAddComponent } from './components/color-add/color-add.component';
 import { ColorUpdateComponent } from './components/color-update/color-update.component';
+import { LoginComponent } from './components/login/login.component';
+import { LoginGuard } from './guards/login/login.guard';
+import { RegisterComponent } from './components/register/register.component';
+import { UserComponent } from './components/user/user.component';
 
 
 const routes: Routes = [
@@ -28,18 +32,22 @@ const routes: Routes = [
   {path:"rent", component:RentComponent},
   {path:"rent/:carId",component:RentComponent},
 
-  {path:"admin/view/car",component:ViewCarComponent},
-  {path:"admin/add/car",component:CarAddComponent},
-  {path:"admin/update/car/:carId",component:CarUpdateComponent},
+  {path:"admin/view/car",component:ViewCarComponent,canActivate:[LoginGuard]},
+  {path:"admin/add/car",component:CarAddComponent,canActivate:[LoginGuard]},
+  {path:"admin/update/car/:carId",component:CarUpdateComponent,canActivate:[LoginGuard]},
 
-  {path:"admin/view/brand",component:BrandViewComponent},
-  {path:"admin/add/brand",component:BrandAddComponent},
-  {path:"admin/update/brand/:brandId",component:BrandUpdateComponent},
+  {path:"admin/view/brand",component:BrandViewComponent,canActivate:[LoginGuard]},
+  {path:"admin/add/brand",component:BrandAddComponent,canActivate:[LoginGuard]},
+  {path:"admin/update/brand/:brandId",component:BrandUpdateComponent,canActivate:[LoginGuard]},
 
-  {path:"admin/view/color",component:ColorViewComponent},
-  {path:"admin/add/color",component:ColorAddComponent},
-  {path:"admin/update/color/:colorId",component:ColorUpdateComponent},
+  {path:"admin/view/color",component:ColorViewComponent,canActivate:[LoginGuard]},
+  {path:"admin/add/color",component:ColorAddComponent,canActivate:[LoginGuard]},
+  {path:"admin/update/color/:colorId",component:ColorUpdateComponent,canActivate:[LoginGuard]},
 
+  {path:"login",component:LoginComponent},
+  {path:"register",component:RegisterComponent},
+
+  {path:"user/:userId",component:UserComponent},
 ];
 
 @NgModule({
