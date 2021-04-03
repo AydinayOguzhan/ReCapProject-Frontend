@@ -51,7 +51,7 @@ export class UserComponent implements OnInit {
       user.id = this.currentUser.id
       this.authService.update(user).subscribe(response=>{
         this.authService.logout()
-        this.router.navigate(["cars"]).then(()=>{
+        this.router.navigate(["login"]).then(()=>{
         window.location.reload()
       })
       },errorResponse=>{
