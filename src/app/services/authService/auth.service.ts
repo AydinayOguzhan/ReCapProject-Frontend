@@ -7,6 +7,7 @@ import { ResponseModel } from 'src/app/models/responseModel';
 import { SingleResponseModel } from 'src/app/models/singleResponseModel';
 import { TokenModel } from 'src/app/models/tokenModel';
 import { User } from 'src/app/models/user/userModel';
+import { LocalStorageService } from '../localStorageService/local-storage.service';
 
 @Injectable({
   providedIn: 'root'
@@ -15,7 +16,7 @@ export class AuthService {
   apiUrl = "https://localhost:44302/api/"
   logged:boolean
 
-  constructor(private httpClient: HttpClient) { }
+  constructor(private httpClient: HttpClient, private localStorageService:LocalStorageService) { }
 
   login(loginModel: LoginModel): Observable<SingleResponseModel<TokenModel>> {
     let newPath = this.apiUrl + "auth/login"
@@ -33,9 +34,9 @@ export class AuthService {
   }
 
   logout(){
-    localStorage.removeItem("token")
-    localStorage.removeItem("email")
-    localStorage.removeItem("id")
+    this.localStorageService.deleteVariable("token")
+    this.localStorageService.deleteVariable("email")
+    this.localStorageService.deleteVariable("id")
   }
 
   isAuthenticated() {

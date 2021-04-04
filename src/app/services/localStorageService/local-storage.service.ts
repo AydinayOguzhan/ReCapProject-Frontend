@@ -15,4 +15,7 @@ export class LocalStorageService {
     return localStorage.getItem(key)
   }
 
+  deleteVariable(key:string){
+    localStorage.removeItem(key)
+  }
 }
