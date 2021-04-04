@@ -3,6 +3,7 @@ import { FormGroup, FormControl, Validators, FormBuilder } from "@angular/forms"
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { AuthService } from 'src/app/services/authService/auth.service';
+import { LocalStorageService } from 'src/app/services/localStorageService/local-storage.service';
 
 @Component({
   selector: 'app-register',
@@ -13,7 +14,7 @@ export class RegisterComponent implements OnInit {
   registerForm:FormGroup
 
   constructor(private formBuilder:FormBuilder,private toastr:ToastrService, private authService:AuthService,
-    private router:Router) { }
+    private router:Router, private localStorageService:LocalStorageService) { }
 
   ngOnInit(): void {
     this.createRegisterForm()
@@ -32,8 +33,8 @@ export class RegisterComponent implements OnInit {
     if (this.registerForm.valid) {
       let registerModel = Object.assign({},this.registerForm.value)
       this.authService.register(registerModel).subscribe(response=>{
-        localStorage.setItem("token",response.data.token)
-        localStorage.setItem("email",registerModel.email)
+        this.localStorageService.setVariable("token",response.data.token)
+        this.localStorageService.setVariable("email",registerModel.email)
         this.router.navigate(["cars"])
         this.toastr.info(response.message).onShown.subscribe(()=>{
           window.location.reload()
