@@ -29,8 +29,8 @@ const routes: Routes = [
   {path:"cardetails/:carId",component:CarDetailComponent},
   {path:"customers",component:CustomerComponent},
   {path:"rentals",component:RentalComponent},
-  {path:"rent", component:RentComponent},
-  {path:"rent/:carId",component:RentComponent},
+  {path:"rent", component:RentComponent,canActivate:[LoginGuard]},
+  {path:"rent/:carId",component:RentComponent,canActivate:[LoginGuard]},
 
   {path:"admin/view/car",component:ViewCarComponent,canActivate:[LoginGuard]},
   {path:"admin/add/car",component:CarAddComponent,canActivate:[LoginGuard]},

@@ -37,7 +37,6 @@ export class AuthService {
     this.localStorageService.deleteVariable("token")
     this.localStorageService.deleteVariable("email")
     this.localStorageService.deleteVariable("id")
-    this.localStorageService.deleteVariable("admin")
   }
 
   isAuthenticated() {
