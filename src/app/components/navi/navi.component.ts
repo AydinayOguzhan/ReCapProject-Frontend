@@ -19,18 +19,22 @@ export class NaviComponent implements OnInit {
   ifAdmin: boolean
 
   constructor(private authService: AuthService, private userService: UserService,
-    private userOperationClaimService: UserOperationClaimService, private localStorageService:LocalStorageService) { }
+    private userOperationClaimService: UserOperationClaimService, private localStorageService: LocalStorageService) { }
 
   ngOnInit(): void {
     this.isLoggedIn()
-    this.getUserByEmail(this.localStorageService.getVariable("email"))
-    this.getUserClaim(parseInt(this.localStorageService.getVariable("id")))
+    if (this.logged) {
+      this.getUserByEmail(this.localStorageService.getVariable("email"))
+      if (this.localStorageService.getVariable("id") == null) {
+        return null
+      }
+      this.checkUserClaims(parseInt(this.localStorageService.getVariable("id")))
+    }
   }
 
   getUserByEmail(email: string) {
     this.userService.getByEmail(email).subscribe(response => {
       this.user = response.data
-      this.localStorageService.setVariable("id", this.user.id.toString())
     })
   }
 
@@ -44,17 +48,14 @@ export class NaviComponent implements OnInit {
     this.isLoggedIn()
   }
 
-  getUserClaim(userId: number) {
-    this.userOperationClaimService.getByUserId(userId).subscribe(response => {
-      this.userOperationClaims = response.data
-      this.ifAdmin = true
-      console.log(this.userOperationClaims)
+  checkUserClaims(userId:number){
+    this.userOperationClaimService.checkUserClaims(userId).subscribe(response=>{
+      if (response.success) {
+        this.ifAdmin = response.success
+      }
+    },errorResponse=>{
+      console.log(errorResponse.error.message)
     })
   }
-
-  checkAdmin(claimId: number) {
-    if (claimId == 1) {
-      this.ifAdmin = true
-    }
-  }
+  
 }
