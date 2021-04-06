@@ -1,0 +1,33 @@
+<body class="text-center">
+
+    <main class="form-signin">
+        <form [formGroup]="customerUpdateForm">
+            <h1 class="h3 mb-3 fw-normal">Please enter your information</h1>
+            <div class="form-text">Some information must be changed on the user page</div>
+
+            <div class="form-floating">
+                <input [attr.disabled]="true" formControlName="firstName" type="text" class="form-control disabledInput" id="firstName"
+                    placeholder="First Name" >
+                <label for="firstName">First Name</label>
+            </div>
+            <div class="form-floating">
+                <input [attr.disabled]="true" formControlName="lastName" type="text" class="form-control" id="lastName"
+                    placeholder="Last Name">
+                <label for="lastName">Last Name</label>
+            </div>
+            <div class="form-floating">
+                <input [attr.disabled]="true" formControlName="email" type="email" class="form-control" id="email"
+                    placeholder="example@example.com">
+                <label for="email">E-mail</label>
+            </div>
+            <div class="form-floating">
+                <input formControlName="companyName" type="companyName" class="form-control" id="companyName"
+                    placeholder="Company Name">
+                <label for="companyName">Company Name</label>
+            </div>
+            <div class="form-text">You don't need to have a company name</div>
+            <button class="w-100 btn btn-lg btn-primary" type="submit" (click)="update()">Sign up</button>
+            <p class="mt-5 mb-3 text-muted">&copy; 2017–2021</p>
+        </form>
+    </main>
+</body>

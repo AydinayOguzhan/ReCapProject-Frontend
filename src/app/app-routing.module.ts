@@ -18,6 +18,7 @@ import { LoginComponent } from './components/login/login.component';
 import { LoginGuard } from './guards/login/login.guard';
 import { RegisterComponent } from './components/register/register.component';
 import { UserComponent } from './components/user/user.component';
+import { CustomerUpdateComponent } from './components/customer-update/customer-update.component';
 
 
 const routes: Routes = [
@@ -27,7 +28,10 @@ const routes: Routes = [
   {path:"cars/color/:colorId", component:CarComponent},
   {path:"cardetails",component:CarDetailComponent},
   {path:"cardetails/:carId",component:CarDetailComponent},
+
   {path:"customers",component:CustomerComponent},
+  {path:"customer/update/:userId",component:CustomerUpdateComponent},
+
   {path:"rentals",component:RentalComponent},
   {path:"rent", component:RentComponent,canActivate:[LoginGuard]},
   {path:"rent/:carId",component:RentComponent,canActivate:[LoginGuard]},

@@ -7,14 +7,14 @@ body {
 body {
   display: flex;
   align-items: center;
-  padding-top: 40px;
+  padding-top: 40px; 
   padding-bottom: 40px;
 }
 
 .form-signin {
   width: 100%;
   max-width: 330px;
-  padding: 15px;
+  padding: 15px; 
   margin: auto;
 }
 
@@ -26,29 +26,29 @@ body {
   z-index: 2;
 }
 
-.form-signin input[type="email"] {
+.form-signin input[type="text"] {
   margin-bottom: -1px;
   border-bottom-right-radius: 0;
   border-bottom-left-radius: 0;
 }
 
-.form-signin input[type="password"] {
+/* .form-signin input[type="password"] {
   margin-bottom: -1px;
   border-bottom-right-radius: 0;
   border-bottom-left-radius: 0;
-}
-
+} */
+/* 
 .form-signin input[type="name"] {
   margin-bottom: -1px;
   border-bottom-right-radius: 0;
   border-bottom-left-radius: 0;
-}
+} */
 
-.form-signin input[type="text"] {
+.form-signin input[type="companyName"] {
   margin-bottom: 10px;
   border-top-left-radius: 0;
   border-top-right-radius: 0;
-}
+} 
 
 .bd-placeholder-img {
     font-size: 1.125rem;

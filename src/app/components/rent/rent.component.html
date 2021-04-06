@@ -1,4 +1,4 @@
-<br><br><br>
+<br><br>
 <div class="accordion" id="accordionExample">
     <div class="accordion-item">
         <h2 class="accordion-header" id="headingOne">
@@ -37,21 +37,86 @@
         <br> <br> <br>
         <div class="content">
             <div class="row">
-                <div class="col-md-2"></div>
-                <div class="col-md-8">
+                <div class="col-md-6">
+                    <div class="card">
+                        <div class="card-header">
+                            <h5 class="title">Please enter your customer informations</h5>
+                        </div>
+                        <div class="card-body">
+                            <form *ngIf="waitForData" [formGroup]="customerForm">
+                                <div class="mb-3">
+                                    <div class="row">
+                                        <div class="col-md-2"></div>
+                                        <div class="col-md-7">
+                                            <label for="firstName">First Name</label>
+                                            <div class="form-group">
+                                                <input type="text" id="firstName" formControlName="firstName"
+                                                    class="form-control" placeholder="First Name">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="mb-3">
+                                    <div class="row">
+                                        <div class="col-md-2"></div>
+                                        <div class="col-md-7">
+                                            <label for="lastName">Last Name</label>
+                                            <div class="form-group">
+                                                <input type="text" id="lastName" formControlName="lastName"
+                                                    class="form-control" placeholder="Last Name">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="mb-3">
+                                    <div class="row">
+                                        <div class="col-md-2"></div>
+                                        <div class="col-md-7">
+                                            <label for="email">E-mail</label>
+                                            <div class="form-group">
+                                                <input type="text" id="email" formControlName="email"
+                                                    class="form-control" placeholder="E-mail">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="mb-3">
+                                    <div class="row">
+                                        <div class="col-md-2"></div>
+                                        <div class="col-md-7">
+                                            <label for="companyName">Company Name</label>
+                                            <div class="form-group">
+                                                <input type="text" id="companyName" formControlName="companyName"
+                                                    class="form-control" placeholder="Company Name">
+                                            </div>
+                                            <div class="form-text">You don't need to have a company name</div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+                <!--////////////////////////////////////////////////////////////////////////////////-->
+                <div class="col-md-6">
                     <div class="card">
                         <div class="card-header">
                             <h5 class="title">Please enter your credit card informations</h5>
                         </div>
                         <div class="card-body">
-                            <form [formGroup]="rentForm ">
+                            <form *ngIf="waitForCreditCardData" [formGroup]="rentForm ">
                                 <div class="mb-3">
                                     <div class="row">
-                                        <div class="col-md-3"></div>
-                                        <div class="col-md-6">
+                                        <div class="col-md-2"></div>
+                                        <div class="col-md-7">
                                             <label for="cardNumber">Card Number</label>
                                             <div class="form-group">
-                                                <input type="number" id="cardNumber" formControlName="cardNumber"
+                                                <input type="text" id="cardNumber" formControlName="cardNumber"
                                                     class="form-control" placeholder="Card Number">
                                             </div>
                                         </div>
@@ -60,8 +125,8 @@
 
                                 <div class="mb-3">
                                     <div class="row">
-                                        <div class="col-md-3"></div>
-                                        <div class="col-md-6">
+                                        <div class="col-md-2"></div>
+                                        <div class="col-md-7">
                                             <label for="cardName">Name on card</label>
                                             <div class="form-group">
                                                 <input type="text" id="cardName" formControlName="cardName"
@@ -73,15 +138,15 @@
 
                                 <div class="mb-3">
                                     <div class="row">
-                                        <div class="col-md-3"></div>
-                                        <div class="col-md-2">
+                                        <div class="col-md-2"></div>
+                                        <div class="col-md-3">
                                             <label for="expiration">Expiration</label>
                                             <div class="form-group">
                                                 <input type="number" id="cardMonth" formControlName="cardMonth"
                                                     class="form-control" placeholder="Month">
                                             </div>
                                         </div>
-                                        <div class="col-md-2">
+                                        <div class="col-md-3">
                                             <label></label>
                                             <div class="form-group">
                                                 <input type="number" id="cardYear" formControlName="cardYear"
@@ -91,15 +156,13 @@
                                     </div>
                                 </div>
 
-
-
                                 <div class="mb-3">
                                     <div class="row">
-                                        <div class="col-md-3"></div>
-                                        <div class="col-md-6">
+                                        <div class="col-md-2"></div>
+                                        <div class="col-md-7">
                                             <label for="cardSecurityNumber">CVV</label>
                                             <div class="form-group">
-                                                <input type="text" id="cardSecurityNumber"
+                                                <input type="number" id="cardSecurityNumber"
                                                     formControlName="cardSecurityNumber" class="form-control"
                                                     placeholder="CVV">
                                             </div>
@@ -107,14 +170,35 @@
                                     </div>
                                 </div>
 
+                                <div class="mb-3">
+                                    <div class="row">
+                                        <div class="col-md-2"></div>
+                                        <div class="col-md-7">
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" value=""
+                                                    id="flexCheckDefault" formControlName="saveCard">
+                                                <label class="form-check-label" for="flexCheckDefault">
+                                                    Save credit card informations
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
                             </form>
 
-                            <div class="card-footer">
+                            <!-- <div class="card-footer">
                                 <div class="d-grid gap-2">
                                     <button class="btn btn-primary" (click)="rent()">Rent</button>
                                 </div>
-                            </div>
+                            </div> -->
                         </div>
+                    </div>
+                </div>
+                <div class="">
+                    <br>
+                    <div class="d-grid gap-2">
+                        <button class="btn btn-primary" (click)="rent()">Rent</button>
                     </div>
                 </div>
             </div>
