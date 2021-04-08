@@ -17,6 +17,7 @@
                             <th>Color</th>
                             <th>Model</th>
                             <th>Price</th>
+                            <th>Findex</th>
                             <th>Description</th>
                             <th></th>
                         </tr>
@@ -27,6 +28,7 @@
                             <td>{{ currentCar?.colorName }}</td>
                             <td>{{ currentCar?.modelYear }}</td>
                             <td>{{ currentCar?.dailyPrice }}</td>
+                            <td>{{currentCar?.findex}}</td>
                             <td>{{ currentCar?.carDescription }}</td>
                         </tr>
                     </tbody>
@@ -78,6 +80,19 @@
                                             <div class="form-group">
                                                 <input type="text" id="email" formControlName="email"
                                                     class="form-control" placeholder="E-mail">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="mb-3">
+                                    <div class="row">
+                                        <div class="col-md-2"></div>
+                                        <div class="col-md-7">
+                                            <label for="findex">Findex</label>
+                                            <div class="form-group">
+                                                <input type="text" id="findex" formControlName="findex"
+                                                    class="form-control" placeholder="Findex">
                                             </div>
                                         </div>
                                     </div>

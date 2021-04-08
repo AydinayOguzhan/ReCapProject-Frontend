@@ -4,6 +4,7 @@ export interface CarDetail{
     colorName:string,
     modelYear:number,
     dailyPrice:number,
-    carDescription:string
+    carDescription:string,
+    findex:number
     
 }

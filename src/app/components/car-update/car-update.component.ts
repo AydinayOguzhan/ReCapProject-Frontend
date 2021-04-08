@@ -48,13 +48,14 @@ export class CarUpdateComponent implements OnInit {
       modelYear: ["", Validators.required],
       dailyPrice: ["", Validators.required],
       description: ["", Validators.required],
+      findex: ["", Validators.required],
     })
   }
 
   update() {
     let currentCar:Car = Object.assign({},this.carUpdateForm.value)
     let newCar:Car = {id:this.car.id,brandId:currentCar.brandId,colorId:currentCar.colorId,dailyPrice:currentCar.dailyPrice,
-    description:currentCar.description,modelYear:currentCar.modelYear}
+    description:currentCar.description,modelYear:currentCar.modelYear,findex:currentCar.findex}
     if (this.carUpdateForm.valid) {
       this.carService.update(newCar).subscribe(response=>{
         this.router.navigate(["admin/view/car"])
@@ -73,7 +74,7 @@ export class CarUpdateComponent implements OnInit {
       this.waitForData = true
       this.carUpdateForm.setValue({
         brandId: this.car.brandId, colorId: this.car.colorId, modelYear: this.car.modelYear,
-        dailyPrice: this.car.dailyPrice, description: this.car.description
+        dailyPrice: this.car.dailyPrice, description: this.car.description,findex:this.car.findex
       })
       console.log(this.carUpdateForm.value)
     }, errorResponse => {

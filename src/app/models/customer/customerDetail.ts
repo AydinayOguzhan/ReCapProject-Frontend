@@ -4,5 +4,6 @@ export interface CustomerDetail{
     firstName:string,
     lastName:string,
     email:string,
+    findex:number,
     companyName:string    
 }

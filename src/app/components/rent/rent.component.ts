@@ -61,6 +61,7 @@ export class RentComponent implements OnInit {
       firstName: ["", Validators.required],
       lastName: ["", Validators.required],
       email: ["", Validators.required],
+      findex: ["", Validators.required],
       companyName: ["", Validators.required],
     })
   }
@@ -71,7 +72,6 @@ export class RentComponent implements OnInit {
     })
   }
 
-  //TODO: Backend kiralanabilme sorgusunu kontrol et.
   rent() {
     if (this.currentCustomer != null) {
       let today = new Date()
@@ -93,6 +93,7 @@ export class RentComponent implements OnInit {
             this.toastr.success(response.message)
           }, errorResponse => {
             console.log(errorResponse.message)
+            this.toastr.error(errorResponse.error.message)
           })
         }, errorResponse => {
           if (errorResponse.error.ValidationErrors.length > 0) {
@@ -124,7 +125,7 @@ export class RentComponent implements OnInit {
         this.waitForData = true
         this.customerForm.setValue({
           firstName: this.currentCustomer.firstName, lastName: this.currentCustomer.lastName,
-          email: this.currentCustomer.email, companyName: this.currentCustomer.companyName
+          email: this.currentCustomer.email, companyName: this.currentCustomer.companyName,findex:this.currentCustomer.findex
         })
       } else {
         this.toastr.info("Please add customer information")
