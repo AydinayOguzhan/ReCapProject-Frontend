@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { User } from 'src/app/models/user/userModel';
 import { UserOperationClaim } from 'src/app/models/user/userOperationClaim';
@@ -19,7 +20,8 @@ export class NaviComponent implements OnInit {
   ifAdmin: boolean
 
   constructor(private authService: AuthService, private userService: UserService,
-    private userOperationClaimService: UserOperationClaimService, private localStorageService: LocalStorageService) { }
+    private userOperationClaimService: UserOperationClaimService, private localStorageService: LocalStorageService,
+    private router:Router) { }
 
   ngOnInit(): void {
     this.isLoggedIn()

@@ -1,6 +1,10 @@
+import { getLocaleDateTimeFormat } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
+import { ToastrService } from 'ngx-toastr';
+import { onErrorResumeNext } from 'rxjs';
 import { Rental } from 'src/app/models/rental/rental';
-import { RentalService } from 'src/app/services/rentalService/rental.service';
+import { LocalStorageService } from 'src/app/services/localStorageService/local-storage.service';
+import { RentService } from 'src/app/services/rentService/rent.service';
 
 @Component({
   selector: 'app-rental',
@@ -8,17 +12,51 @@ import { RentalService } from 'src/app/services/rentalService/rental.service';
   styleUrls: ['./rental.component.css']
 })
 export class RentalComponent implements OnInit {
-  rentals:Rental[] = []
+  rentals: Rental[] = []
+  userId: number
+  waitForData:boolean = false
+  returned:boolean = true
 
-  constructor(private rentalService:RentalService) { }
+  constructor(private rentService: RentService, private localStorageService: LocalStorageService, private toastr:ToastrService) { }
 
   ngOnInit(): void {
-    this.getRentals()
+    this.userId = parseInt(this.localStorageService.getVariable("id"))
+    this.getRentalDetailByUserId(this.userId)
   }
 
-  getRentals(){
-    this.rentalService.getRentals().subscribe(response=>{
-      this.rentals = response.data
+  getRentalDetailByUserId(userId:number){
+    this.rentService.getRentalDetailByUserId(userId).subscribe(response=>{
+      if (response.data.length <= 0) {
+        this.waitForData = false
+      }else{
+        this.rentals = response.data
+        this.waitForData = true
+      }
+    },errorResponse=>{
+      console.log(errorResponse.error)
+      this.toastr.error(errorResponse.error)
     })
+  }
+
+  returnCar(rental:Rental){
+    let today = new Date()
+    rental.returnDate = today
+    this.rentService.update(rental).subscribe(response=>{
+      this.ngOnInit()
+      console.log(response.message)
+    },errorResponse=>{
+      console.log(errorResponse.error.message)
+    })
+  }
+
+  setButtonClass(rental:Rental){
+    let today = new Date()
+    if (rental.returnDate <= today) {
+      return "btn btn-outline-success"
+    }else if(rental.returnDate == null){
+      return "btn btn-outline-success invisible"
+    }else{
+      return "btn btn-outline-success invisible"
+    }
   }
 }
