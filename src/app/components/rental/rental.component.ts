@@ -43,7 +43,7 @@ export class RentalComponent implements OnInit {
     rental.returnDate = today
     this.rentService.update(rental).subscribe(response=>{
       this.ngOnInit()
-      console.log(response.message)
+      this.toastr.info("Car returned")
     },errorResponse=>{
       console.log(errorResponse.error.message)
     })

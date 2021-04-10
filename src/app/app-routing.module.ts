@@ -20,6 +20,7 @@ import { RegisterComponent } from './components/register/register.component';
 import { UserComponent } from './components/user/user.component';
 import { CustomerUpdateComponent } from './components/customer-update/customer-update.component';
 import { CarImageAddComponent } from './components/car-image-add/car-image-add.component';
+import { AdminRentalsComponent } from './components/admin-rentals/admin-rentals.component';
 
 
 const routes: Routes = [
@@ -33,14 +34,15 @@ const routes: Routes = [
   {path:"customers",component:CustomerComponent},
   {path:"customer/update/:userId",component:CustomerUpdateComponent},
 
-  {path:"admin/rentals",component:RentalComponent,canActivate:[LoginGuard]},
   {path:"rentals",component:RentalComponent,canActivate:[LoginGuard]},
   {path:"rent", component:RentComponent,canActivate:[LoginGuard]},
   {path:"rent/:carId",component:RentComponent,canActivate:[LoginGuard]},
-
+  
   {path:"admin/view/car",component:ViewCarComponent,canActivate:[LoginGuard]},
   {path:"admin/add/car",component:CarAddComponent,canActivate:[LoginGuard]},
   {path:"admin/update/car/:carId",component:CarUpdateComponent,canActivate:[LoginGuard]},
+  
+  {path:"admin/rentals",component:AdminRentalsComponent,canActivate:[LoginGuard]},
   
   {path:"admin/carImage/:carId",component:CarImageAddComponent,canActivate:[LoginGuard]},
 
