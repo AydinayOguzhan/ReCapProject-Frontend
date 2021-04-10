@@ -34,6 +34,7 @@ import { AuthInterceptor } from './interceptors/auth/auth.interceptor';
 import { RegisterComponent } from './components/register/register.component';
 import { UserComponent } from './components/user/user.component';
 import { CustomerUpdateComponent } from './components/customer-update/customer-update.component';
+import { CarImageAddComponent } from './components/car-image-add/car-image-add.component';
 
 @NgModule({
   declarations: [
@@ -62,6 +63,7 @@ import { CustomerUpdateComponent } from './components/customer-update/customer-u
     RegisterComponent,
     UserComponent,
     CustomerUpdateComponent,
+    CarImageAddComponent,
   ],
   imports: [
     BrowserModule,

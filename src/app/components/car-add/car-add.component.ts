@@ -4,9 +4,10 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { Brand } from 'src/app/models/brand/brand';
 import { Car } from 'src/app/models/car/car';
-import { CarDetail } from 'src/app/models/carDetails/carDetail';
+import { CarImage } from 'src/app/models/carImage/carImage';
 import { Color } from 'src/app/models/color/color';
 import { BrandService } from 'src/app/services/brandService/brand.service';
+import { CarDetailService } from 'src/app/services/carDetailService/car-detail.service';
 import { CarService } from 'src/app/services/carService/car.service';
 import { ColorService } from 'src/app/services/colorService/color.service';
 
@@ -39,7 +40,7 @@ export class CarAddComponent implements OnInit {
       colorId: [0, Validators.required],
       modelYear: ["", Validators.required],
       dailyPrice: ["", Validators.required],
-      description: ["", Validators.required],
+      description: ["", Validators.required]
     })
   }
 
@@ -48,7 +49,7 @@ export class CarAddComponent implements OnInit {
       let carAddModel = Object.assign({}, this.carAddForm.value)
       this.carService.add(carAddModel).subscribe(response => {
         this.router.navigate(["admin/view/car"])
-        this.toastr.info("Ekleme işlemi başarılı")
+        this.toastr.info(response.message)
       }, responseError => {
         console.log(responseError.error.errors)
         this.toastr.error(responseError.error.ValidationErrors)
@@ -58,7 +59,6 @@ export class CarAddComponent implements OnInit {
           }
         }
       })
-      // console.log(carAddModel)
     } else {
       this.toastr.error("Lütfen formu doldurunuz")
     }

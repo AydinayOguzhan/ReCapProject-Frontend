@@ -1,12 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators, FormBuilder } from "@angular/forms";
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { Brand } from 'src/app/models/brand/brand';
 import { Car } from 'src/app/models/car/car';
 import { CarDetail } from 'src/app/models/carDetails/carDetail';
 import { Color } from 'src/app/models/color/color';
 import { BrandService } from 'src/app/services/brandService/brand.service';
+import { CarDetailService } from 'src/app/services/carDetailService/car-detail.service';
 import { CarService } from 'src/app/services/carService/car.service';
 import { ColorService } from 'src/app/services/colorService/color.service';
 
@@ -24,10 +25,11 @@ export class CarUpdateComponent implements OnInit {
 
   waitForData: boolean
   car: Car
+  carId:number
 
   constructor(private formBuilder: FormBuilder, private toastr: ToastrService, private carService: CarService,
     private brandService: BrandService, private colorService: ColorService, private router: Router,
-    private activatedRoute: ActivatedRoute) { }
+    private activatedRoute: ActivatedRoute, private carDetailService:CarDetailService) { }
 
   ngOnInit(): void {
     this.getColors()
@@ -36,6 +38,7 @@ export class CarUpdateComponent implements OnInit {
       if (params["carId"]) {
         this.getById(params["carId"])
         this.createUpdateForm()
+        this.carId = params["carId"]
       }
     })
   }
@@ -48,7 +51,7 @@ export class CarUpdateComponent implements OnInit {
       modelYear: ["", Validators.required],
       dailyPrice: ["", Validators.required],
       description: ["", Validators.required],
-      findex: ["", Validators.required],
+      findex: ["", Validators.required]
     })
   }
 
@@ -94,6 +97,9 @@ export class CarUpdateComponent implements OnInit {
     })
   }
 
+  goToCarImage(){
+    this.router.navigate(["admin/carImage/" + this.carId])
+  }
 
 }
 

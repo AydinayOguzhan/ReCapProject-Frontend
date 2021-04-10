@@ -15,11 +15,11 @@
                                 <div class="col-md-6">
                                     <label for="brand">Brand</label>
                                     <div class="form-group">
-                                        <select class="form-select" formControlName="brandId" >
+                                        <select class="form-select" formControlName="brandId">
                                             <option disabled selected value=0>Select brand</option>
-                                            <option *ngFor="let brand of brands" 
-                                            [ngValue]="brand.id">{{brand.brandName}}</option>
-                                          </select>
+                                            <option *ngFor="let brand of brands" [ngValue]="brand.id">
+                                                {{brand.brandName}}</option>
+                                        </select>
                                     </div>
                                 </div>
                             </div>
@@ -31,11 +31,11 @@
                                 <div class="col-md-6">
                                     <label for="color">Color</label>
                                     <div class="form-group">
-                                        <select  class="form-select" formControlName="colorId">
+                                        <select class="form-select" formControlName="colorId">
                                             <option disabled selected value=0>Select Color</option>
-                                            <option *ngFor="let color of colors"  
-                                            [ngValue]="color.id">{{color.colorName}}</option>
-                                          </select>
+                                            <option *ngFor="let color of colors" [ngValue]="color.id">
+                                                {{color.colorName}}</option>
+                                        </select>
                                     </div>
                                 </div>
                             </div>
@@ -79,7 +79,6 @@
                                 </div>
                             </div>
                         </div>
-
                     </form>
 
                     <div class="card-footer">

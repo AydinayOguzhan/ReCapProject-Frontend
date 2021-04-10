@@ -19,6 +19,7 @@ import { LoginGuard } from './guards/login/login.guard';
 import { RegisterComponent } from './components/register/register.component';
 import { UserComponent } from './components/user/user.component';
 import { CustomerUpdateComponent } from './components/customer-update/customer-update.component';
+import { CarImageAddComponent } from './components/car-image-add/car-image-add.component';
 
 
 const routes: Routes = [
@@ -39,6 +40,8 @@ const routes: Routes = [
   {path:"admin/view/car",component:ViewCarComponent,canActivate:[LoginGuard]},
   {path:"admin/add/car",component:CarAddComponent,canActivate:[LoginGuard]},
   {path:"admin/update/car/:carId",component:CarUpdateComponent,canActivate:[LoginGuard]},
+  
+  {path:"admin/carImage/:carId",component:CarImageAddComponent,canActivate:[LoginGuard]},
 
   {path:"admin/view/brand",component:BrandViewComponent,canActivate:[LoginGuard]},
   {path:"admin/add/brand",component:BrandAddComponent,canActivate:[LoginGuard]},
