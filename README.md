@@ -1,6 +1,9 @@
-# Recap
+# ReCapProject Frontend
+
+This project is the Frontend of the [ReCapProject](https://github.com/AydinayOguzhan/ReCapProject)
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 11.2.3.
+
 
 ## Development server
 
