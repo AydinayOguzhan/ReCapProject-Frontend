@@ -15,7 +15,7 @@ export class UserService {
   constructor(private httpClient:HttpClient) { }
 
   getAll():Observable<ListResponseModel<User>>{
-    let newPath = this.apiUrl + "getall"
+    let newPath = this.apiUrl + "users/getall"
     return this.httpClient.get<ListResponseModel<User>>(newPath)
   }
 

@@ -1,0 +1,26 @@
+<h2 *ngIf="!ifAdmin">If you want to access here, you must be an administrator!</h2>
+<br><br>
+<table *ngIf="waitForData" class="table table-striped table-secondary table-bordered">
+    <thead>
+        <tr>
+            <th>User Id</th>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>E-mail</th>
+            <th>Status</th>
+            <th>Findex</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let user of users">
+            <th>{{user.id}}</th>
+            <th>{{user.firstName}}</th>
+            <th>{{user.lastName}}</th>
+            <th>{{user.email}}</th>
+            <th>{{user.status}}</th>
+            <th>{{user.findex}}</th>
+            <td><button (click)="delete(user)" class="btn btn-outline-danger">Delete User</button></td>
+        </tr>
+    </tbody>
+</table>
