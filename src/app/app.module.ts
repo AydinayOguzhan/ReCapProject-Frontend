@@ -36,6 +36,7 @@ import { UserComponent } from './components/user/user.component';
 import { CustomerUpdateComponent } from './components/customer-update/customer-update.component';
 import { CarImageAddComponent } from './components/car-image-add/car-image-add.component';
 import { AdminRentalsComponent } from './components/admin-rentals/admin-rentals.component';
+import { AdminUsersComponent } from './components/admin-users/admin-users.component';
 
 @NgModule({
   declarations: [
@@ -66,6 +67,7 @@ import { AdminRentalsComponent } from './components/admin-rentals/admin-rentals.
     CustomerUpdateComponent,
     CarImageAddComponent,
     AdminRentalsComponent,
+    AdminUsersComponent,
   ],
   imports: [
     BrowserModule,

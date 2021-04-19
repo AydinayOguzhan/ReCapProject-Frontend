@@ -34,4 +34,9 @@ export class CustomerService {
     let newPath = this.apiUrl + "customers/update"
     return this.httpClient.post<ResponseModel>(newPath,customer)
   }
+
+  delete(customer:Customer):Observable<ResponseModel>{
+    let newPath = this.apiUrl + "customers/delete"
+    return this.httpClient.post<ResponseModel>(newPath,customer)
+  }
 }

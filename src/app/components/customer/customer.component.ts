@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
+import { Customer } from 'src/app/models/customer/customer';
 import { CustomerDetail } from 'src/app/models/customer/customerDetail';
 import { CustomerService } from 'src/app/services/customerService/customer.service';
 import { LocalStorageService } from 'src/app/services/localStorageService/local-storage.service';
@@ -35,7 +36,6 @@ export class CustomerComponent implements OnInit {
     })
   }
 
-
   getCustomers(){
     this.customerService.getCustomers().subscribe(response=>{
       this.customers = response.data
@@ -46,4 +46,13 @@ export class CustomerComponent implements OnInit {
     })
   }
 
+  delete(customer:CustomerDetail){
+    let deleteCustomer:Customer = {id:customer.customerId, userId:customer.userId, companyName:customer.companyName}
+    this.customerService.delete(deleteCustomer).subscribe(response=>{
+      this.toastr.success(response.message)
+      this.ngOnInit()
+    },errorResponse=>{
+      this.toastr.error(errorResponse.error.message)
+    })
+  }
 }
