@@ -1,5 +1,6 @@
+<h2 *ngIf="!ifAdmin">If you want to access here, you must be an administrator!</h2>
 <br> <br> <br>
-<div class="content">
+<div *ngIf="waitForData" class="content">
     <div class="row">
         <div class="col-md-2"></div>
         <div class="col-md-8">

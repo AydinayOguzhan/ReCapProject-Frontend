@@ -10,6 +10,8 @@ import { BrandService } from 'src/app/services/brandService/brand.service';
 import { CarDetailService } from 'src/app/services/carDetailService/car-detail.service';
 import { CarService } from 'src/app/services/carService/car.service';
 import { ColorService } from 'src/app/services/colorService/color.service';
+import { LocalStorageService } from 'src/app/services/localStorageService/local-storage.service';
+import { UserOperationClaimService } from 'src/app/services/userOperationClaimService/user-operation-claim.service';
 
 @Component({
   selector: 'app-car-add',
@@ -17,21 +19,34 @@ import { ColorService } from 'src/app/services/colorService/color.service';
   styleUrls: ['./car-add.component.css']
 })
 export class CarAddComponent implements OnInit {
-
   carAddForm: FormGroup
-
   brands: Brand[]
   colors: Color[]
-
+  ifAdmin: boolean
+  waitForData: boolean = false
 
   constructor(private formBuilder: FormBuilder, private toastr: ToastrService, private carService: CarService,
     private brandService: BrandService, private colorService: ColorService, private router: Router,
-    private activatedRoute: ActivatedRoute) { }
+    private activatedRoute: ActivatedRoute, private userOperationClaimService: UserOperationClaimService,
+    private localStorageService: LocalStorageService) { }
 
   ngOnInit(): void {
-    this.getBrands()
-    this.getColors()
-    this.createAddForm()
+    this.checkUserClaims(parseInt(this.localStorageService.getVariable("id")))
+  }
+
+  checkUserClaims(userId: number) {
+    this.userOperationClaimService.checkUserClaims(userId).subscribe(response => {
+      if (response.success) {
+        this.ifAdmin = response.success
+        this.getBrands()
+        this.getColors()
+        this.createAddForm()
+      } else {
+        this.ifAdmin = response.success
+      }
+    }, errorResponse => {
+      console.log(errorResponse.error.message)
+    })
   }
 
   createAddForm() {
@@ -42,6 +57,7 @@ export class CarAddComponent implements OnInit {
       dailyPrice: ["", Validators.required],
       description: ["", Validators.required]
     })
+    this.waitForData = true
   }
 
   add() {

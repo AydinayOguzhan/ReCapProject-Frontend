@@ -6,6 +6,8 @@ import { ToastrService } from 'ngx-toastr';
 import { CarImage } from 'src/app/models/carImage/carImage';
 import { CarDetailService } from 'src/app/services/carDetailService/car-detail.service';
 import { CarService } from 'src/app/services/carService/car.service';
+import { LocalStorageService } from 'src/app/services/localStorageService/local-storage.service';
+import { UserOperationClaimService } from 'src/app/services/userOperationClaimService/user-operation-claim.service';
 
 
 @Component({
@@ -19,17 +21,31 @@ export class CarImageAddComponent implements OnInit {
   carId: number
   carImages: CarImage[]
   isDefault: boolean
+  ifAdmin: boolean
 
   constructor(private formBuilder: FormBuilder, private toastr: ToastrService, private carService: CarService, private router: Router,
-    private activatedRoute: ActivatedRoute, private carDetailService: CarDetailService, private sanitizer: DomSanitizer) { }
+    private activatedRoute: ActivatedRoute, private carDetailService: CarDetailService, private sanitizer: DomSanitizer,
+    private userOperationClaimService: UserOperationClaimService, private localStorageService: LocalStorageService) { }
 
   ngOnInit(): void {
     this.activatedRoute.params.subscribe(params => {
       this.carId = params["carId"]
-      this.getAllImages(params["carId"])
-      this.waitForData = true
+      this.checkUserClaims(parseInt(this.localStorageService.getVariable("id")))
     })
-    this.createCarImageForm()
+  }
+
+  checkUserClaims(userId: number) {
+    this.userOperationClaimService.checkUserClaims(userId).subscribe(response => {
+      if (response.success) {
+        this.ifAdmin = response.success
+        this.getAllImages(this.carId)
+        this.createCarImageForm()
+      } else {
+        this.ifAdmin = response.success
+      }
+    }, errorResponse => {
+      console.log(errorResponse.error.message)
+    })
   }
 
   createCarImageForm() {
@@ -37,6 +53,7 @@ export class CarImageAddComponent implements OnInit {
       file: ["", Validators.required],
       fileSource: ["",]
     })
+    this.waitForData = true
   }
 
   onFileSelect(event: any) {

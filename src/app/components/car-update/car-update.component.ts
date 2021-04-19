@@ -4,12 +4,13 @@ import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { Brand } from 'src/app/models/brand/brand';
 import { Car } from 'src/app/models/car/car';
-import { CarDetail } from 'src/app/models/carDetails/carDetail';
 import { Color } from 'src/app/models/color/color';
 import { BrandService } from 'src/app/services/brandService/brand.service';
 import { CarDetailService } from 'src/app/services/carDetailService/car-detail.service';
 import { CarService } from 'src/app/services/carService/car.service';
 import { ColorService } from 'src/app/services/colorService/color.service';
+import { LocalStorageService } from 'src/app/services/localStorageService/local-storage.service';
+import { UserOperationClaimService } from 'src/app/services/userOperationClaimService/user-operation-claim.service';
 
 
 @Component({
@@ -19,30 +20,42 @@ import { ColorService } from 'src/app/services/colorService/color.service';
 })
 export class CarUpdateComponent implements OnInit {
   carUpdateForm: FormGroup
-
   brands: Brand[]
   colors: Color[]
-
   waitForData: boolean
   car: Car
-  carId:number
+  carId: number
+  ifAdmin: boolean
 
   constructor(private formBuilder: FormBuilder, private toastr: ToastrService, private carService: CarService,
     private brandService: BrandService, private colorService: ColorService, private router: Router,
-    private activatedRoute: ActivatedRoute, private carDetailService:CarDetailService) { }
+    private activatedRoute: ActivatedRoute, private carDetailService: CarDetailService,
+    private userOperationClaimService: UserOperationClaimService, private localStorageService:LocalStorageService) { }
 
   ngOnInit(): void {
-    this.getColors()
-    this.getBrands()
     this.activatedRoute.params.subscribe(params => {
       if (params["carId"]) {
-        this.getById(params["carId"])
-        this.createUpdateForm()
         this.carId = params["carId"]
+        this.checkUserClaims(parseInt(this.localStorageService.getVariable("id")))
       }
     })
   }
 
+  checkUserClaims(userId: number) {
+    this.userOperationClaimService.checkUserClaims(userId).subscribe(response => {
+      if (response.success) {
+        this.ifAdmin = response.success
+        this.getColors()
+        this.getBrands()
+        this.getById(this.carId)
+        this.createUpdateForm()
+      } else {
+        this.ifAdmin = response.success
+      }
+    }, errorResponse => {
+      console.log(errorResponse.error.message)
+    })
+  }
 
   createUpdateForm() {
     this.carUpdateForm = this.formBuilder.group({
@@ -56,17 +69,19 @@ export class CarUpdateComponent implements OnInit {
   }
 
   update() {
-    let currentCar:Car = Object.assign({},this.carUpdateForm.value)
-    let newCar:Car = {id:this.car.id,brandId:currentCar.brandId,colorId:currentCar.colorId,dailyPrice:currentCar.dailyPrice,
-    description:currentCar.description,modelYear:currentCar.modelYear,findex:currentCar.findex}
+    let currentCar: Car = Object.assign({}, this.carUpdateForm.value)
+    let newCar: Car = {
+      id: this.car.id, brandId: currentCar.brandId, colorId: currentCar.colorId, dailyPrice: currentCar.dailyPrice,
+      description: currentCar.description, modelYear: currentCar.modelYear, findex: currentCar.findex
+    }
     if (this.carUpdateForm.valid) {
-      this.carService.update(newCar).subscribe(response=>{
+      this.carService.update(newCar).subscribe(response => {
         this.router.navigate(["admin/view/car"])
         this.toastr.info(response.message)
-      },errorResponse=>{
+      }, errorResponse => {
         console.log(errorResponse.message)
       })
-    }else{
+    } else {
       this.toastr.error("Lütfen formu doldurunuz")
     }
   }
@@ -77,7 +92,7 @@ export class CarUpdateComponent implements OnInit {
       this.waitForData = true
       this.carUpdateForm.setValue({
         brandId: this.car.brandId, colorId: this.car.colorId, modelYear: this.car.modelYear,
-        dailyPrice: this.car.dailyPrice, description: this.car.description,findex:this.car.findex
+        dailyPrice: this.car.dailyPrice, description: this.car.description, findex: this.car.findex
       })
       console.log(this.carUpdateForm.value)
     }, errorResponse => {
@@ -97,7 +112,7 @@ export class CarUpdateComponent implements OnInit {
     })
   }
 
-  goToCarImage(){
+  goToCarImage() {
     this.router.navigate(["admin/carImage/" + this.carId])
   }
 

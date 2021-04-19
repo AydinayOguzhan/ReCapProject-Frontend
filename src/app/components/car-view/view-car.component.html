@@ -1,9 +1,10 @@
+<h2 *ngIf="!ifAdmin">If you want to access here, you must be an administrator!</h2>
 <br>
-<div class="d-grid gap-2">
+<div *ngIf="waitForData" class="d-grid gap-2">
     <button class="btn btn-outline-success" routerLink="/admin/add/car">Add</button>
 </div>
 <br>
-<div class="row row-cols-1 row-cols-md-5 g-4">
+<div *ngIf="waitForData" class="row row-cols-1 row-cols-md-5 g-4">
     <div class="col" *ngFor="let car of carDetails">
         <div class="card h-100">
             <div class="card-body">

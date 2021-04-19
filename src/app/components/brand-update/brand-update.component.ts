@@ -4,6 +4,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { Brand } from 'src/app/models/brand/brand';
 import { BrandService } from 'src/app/services/brandService/brand.service';
+import { LocalStorageService } from 'src/app/services/localStorageService/local-storage.service';
+import { UserOperationClaimService } from 'src/app/services/userOperationClaimService/user-operation-claim.service';
 
 @Component({
   selector: 'app-brand-update',
@@ -12,21 +14,38 @@ import { BrandService } from 'src/app/services/brandService/brand.service';
 })
 export class BrandUpdateComponent implements OnInit {
   brandUpdateForm:FormGroup
-  
   currentBrand:Brand
   waitForData:boolean
+  ifAdmin: boolean
+  brandId:number
 
   constructor(private formBuilder: FormBuilder, private brandService:BrandService, private toastr:ToastrService,
-    private router:Router, private activatedRoute:ActivatedRoute) { }
+    private router:Router, private activatedRoute:ActivatedRoute,private userOperationClaimService: UserOperationClaimService,
+    private localStorageService: LocalStorageService) { }
 
   ngOnInit(): void {
     this.activatedRoute.params.subscribe(params=>{
       if (params["brandId"]) {
-        this.getById(params["brandId"])
-        this.createUpdateForm()
+        this.brandId = params["brandId"]
+        this.checkUserClaims(parseInt(this.localStorageService.getVariable("id")))
       }
     })
   }
+
+  checkUserClaims(userId: number) {
+    this.userOperationClaimService.checkUserClaims(userId).subscribe(response => {
+      if (response.success) {
+        this.ifAdmin = response.success
+        this.getById(this.brandId)
+        this.createUpdateForm()
+      } else {
+        this.ifAdmin = response.success
+      }
+    }, errorResponse => {
+      console.log(errorResponse.error.message)
+    })
+  }
+
   
   createUpdateForm() {
     this.brandUpdateForm = this.formBuilder.group({

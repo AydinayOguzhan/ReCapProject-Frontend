@@ -31,8 +31,10 @@ const routes: Routes = [
   {path:"cardetails",component:CarDetailComponent},
   {path:"cardetails/:carId",component:CarDetailComponent},
 
-  {path:"customers",component:CustomerComponent},
   {path:"customer/update/:userId",component:CustomerUpdateComponent},
+  {path:"customers",component:CustomerUpdateComponent},
+  
+  {path:"admin/customers",component:CustomerComponent,canActivate:[LoginGuard]},
 
   {path:"rentals",component:RentalComponent,canActivate:[LoginGuard]},
   {path:"rent", component:RentComponent,canActivate:[LoginGuard]},

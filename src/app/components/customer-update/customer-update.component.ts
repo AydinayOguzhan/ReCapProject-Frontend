@@ -61,6 +61,7 @@ export class CustomerUpdateComponent implements OnInit {
   getCustomerDetailByUserId(userId: number) {
     this.customerService.getCustomerDetailByUserId(userId).subscribe(response => {
       if (response.data == null) {
+        //TODO: addCustomer metodu için customer ın olup olmadığını sorgulayan bir komut yaz ve ngoninit in içine koy
         let newCustomer: Customer = { userId: parseInt(this.localStorageService.getVariable("id")), companyName: "" }
         this.addCustomer(newCustomer)
         this.ngOnInit()

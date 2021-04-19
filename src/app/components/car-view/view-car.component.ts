@@ -8,6 +8,8 @@ import { CarDetailService } from 'src/app/services/carDetailService/car-detail.s
 import { CarService } from 'src/app/services/carService/car.service';
 import { DomSanitizer } from '@angular/platform-browser';
 import { VirtualTimeScheduler } from 'rxjs';
+import { UserOperationClaimService } from 'src/app/services/userOperationClaimService/user-operation-claim.service';
+import { LocalStorageService } from 'src/app/services/localStorageService/local-storage.service';
 
 @Component({
   selector: 'app-view-car',
@@ -17,22 +19,39 @@ import { VirtualTimeScheduler } from 'rxjs';
 export class ViewCarComponent implements OnInit {
   carDetails: CarDetail[]
   cars: Car[]
-  currentCar:Car
-  carImages:CarImage[]
+  currentCar: Car
+  carImages: CarImage[]
+  ifAdmin: boolean
+  waitForData: boolean = false
 
   constructor(private carService: CarService, private toastr: ToastrService,
-     private router: Router, private carDetailService:CarDetailService, private sanitizer:DomSanitizer) { }
+    private router: Router, private carDetailService: CarDetailService, private sanitizer: DomSanitizer,
+    private userOperationClaimService: UserOperationClaimService, private localStorageService: LocalStorageService) { }
 
   ngOnInit(): void {
-    this.getCars()
-    this.get()
-    this.getAll()
+    this.checkUserClaims(parseInt(this.localStorageService.getVariable("id")))
   }
+
+  checkUserClaims(userId: number) {
+    this.userOperationClaimService.checkUserClaims(userId).subscribe(response => {
+      if (response.success) {
+        this.ifAdmin = response.success
+        this.getCars()
+        this.get()
+        this.getAll()
+      } else {
+        this.ifAdmin = response.success
+      }
+    }, errorResponse => {
+      console.log(errorResponse.error.message)
+    })
+  }
+
 
   getCars() {
     this.carService.getCars().subscribe(response => {
       this.carDetails = response.data
-      // console.log(this.carDetails)
+      this.waitForData = true
     }, errorResult => {
       this.toastr.error("Bir hata oluştu", "Üzgünüz")
     })
@@ -68,14 +87,14 @@ export class ViewCarComponent implements OnInit {
   }
 
   getAll() {
-    this.carDetailService.getAll().subscribe(response=>{
+    this.carDetailService.getAll().subscribe(response => {
       this.carImages = response.data
     })
   }
 
 
-  goUpdate(carId:number){  
+  goUpdate(carId: number) {
     let newUrl = "admin/update/car/" + carId
-    this.router.navigateByUrl(newUrl)  
+    this.router.navigateByUrl(newUrl)
   }
 }
