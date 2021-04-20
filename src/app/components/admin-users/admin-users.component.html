@@ -10,16 +10,18 @@
             <th>Status</th>
             <th>Findex</th>
             <th></th>
+            <th></th>
         </tr>
     </thead>
     <tbody>
         <tr *ngFor="let user of users">
-            <th>{{user.id}}</th>
-            <th>{{user.firstName}}</th>
-            <th>{{user.lastName}}</th>
-            <th>{{user.email}}</th>
-            <th>{{user.status}}</th>
-            <th>{{user.findex}}</th>
+            <td>{{user.id}}</td>
+            <td>{{user.firstName}}</td>
+            <td>{{user.lastName}}</td>
+            <td>{{user.email}}</td>
+            <td>{{user.status}}</td>
+            <td>{{user.findex}}</td>
+            <td><button (click)="editClaims(user.id)" class="btn btn-outline-success">Edit Claims</button></td>
             <td><button (click)="delete(user)" class="btn btn-outline-danger">Delete User</button></td>
         </tr>
     </tbody>

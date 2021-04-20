@@ -48,4 +48,8 @@ export class AdminUsersComponent implements OnInit {
   delete(user:User){
     console.log(user)
   }
+
+  editClaims(userId:number){
+    console.log(userId)
+  }
 }
