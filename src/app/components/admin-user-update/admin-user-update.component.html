@@ -114,10 +114,10 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr *ngFor="let claim of currentUserClaims">
+                            <tr *ngFor="let claim of currentUserClaimsDetails">
                                 <td>{{claim.id}}</td>
                                 <td>{{claim.userId}}</td>
-                                <td>{{claim.operationClaimId}}</td>
+                                <td>{{claim.operationClaimName}}</td>
                                 <td><button class="btn btn-danger" (click)="delete(claim)">Delete</button></td>
                             </tr>
                         </tbody>

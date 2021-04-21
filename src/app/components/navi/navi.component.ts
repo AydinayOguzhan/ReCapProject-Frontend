@@ -54,6 +54,7 @@ export class NaviComponent implements OnInit {
     this.userOperationClaimService.checkUserClaims(userId).subscribe(response=>{
       if (response.success) {
         this.ifAdmin = response.success
+        console.log(response.success)
       }else{
         this.ifAdmin = response.success
       }

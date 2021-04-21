@@ -5,6 +5,7 @@ import { ListResponseModel } from 'src/app/models/listResponseModel';
 import { ResponseModel } from 'src/app/models/responseModel';
 import { SingleResponseModel } from 'src/app/models/singleResponseModel';
 import { User } from 'src/app/models/user/userModel';
+import { UserOperationClaimDetail } from 'src/app/models/user/userOperationClaimDetail';
 
 @Injectable({
   providedIn: 'root'

@@ -10,6 +10,7 @@ import { ActivatedRoute } from '@angular/router';
 import { HttpErrorResponse } from '@angular/common/http';
 import { OperationClaimService } from 'src/app/services/operationClaimService/operation-claim.service';
 import { Claim } from 'src/app/models/claims/claims';
+import { UserOperationClaimDetail } from 'src/app/models/user/userOperationClaimDetail';
 
 @Component({
   selector: 'app-admin-user-update',
@@ -22,11 +23,10 @@ export class AdminUserUpdateComponent implements OnInit {
   waitForData: boolean = false
   updateUserForm: FormGroup
   currentUser: User
-  currentUserClaims:UserOperationClaim[]
+  currentUserClaimsDetails:UserOperationClaimDetail[]
   admin:number
   operationClaims:Claim[]
   claimsForm:FormGroup
-
 
   constructor(private userOperationClaimService: UserOperationClaimService, private localStorageService: LocalStorageService,
     private userService: UserService, private formBuilder: FormBuilder, private toastr: ToastrService,
@@ -110,8 +110,8 @@ export class AdminUserUpdateComponent implements OnInit {
   }
 
   getUserCaims(userId:number){
-    this.userOperationClaimService.getByUserId(userId).subscribe(response=>{
-      this.currentUserClaims = response.data
+    this.userOperationClaimService.getUserClaimsDetailsByUserId(userId).subscribe(response=>{
+      this.currentUserClaimsDetails = response.data
     },errorResponse=>{
       this.toastr.error(errorResponse.error.message)
     })
@@ -126,7 +126,9 @@ export class AdminUserUpdateComponent implements OnInit {
     })
   }
 
-  delete(claim:UserOperationClaim){
+  delete(claimDetail:UserOperationClaimDetail){
+    let claim:UserOperationClaim = {id:claimDetail.id,operationClaimId:claimDetail.operationClaimId,
+      userId:claimDetail.userId}
     this.userOperationClaimService.delete(claim).subscribe(response=>{
       this.toastr.success(response.message)
       this.ngOnInit()
