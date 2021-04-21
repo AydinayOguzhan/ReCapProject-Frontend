@@ -38,7 +38,7 @@ export class UserComponent implements OnInit {
   }
 
   getById(userId:number){
-    this.userService.getById(userId).subscribe(response=>{
+    this.userService.getByUserId(userId).subscribe(response=>{
       this.currentUser = response.data
       this.waitForData = true
       this.updateUserForm.setValue({firstName:this.currentUser.firstName, lastName:this.currentUser.lastName, 

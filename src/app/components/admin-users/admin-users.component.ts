@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { User } from 'src/app/models/user/userModel';
+import { CustomerService } from 'src/app/services/customerService/customer.service';
 import { LocalStorageService } from 'src/app/services/localStorageService/local-storage.service';
 import { UserOperationClaimService } from 'src/app/services/userOperationClaimService/user-operation-claim.service';
 import { UserService } from 'src/app/services/userService/user.service';
@@ -16,7 +18,8 @@ export class AdminUsersComponent implements OnInit {
   users:User[]
 
   constructor(private userOperationClaimService: UserOperationClaimService, private localStorageService: LocalStorageService,
-    private userService:UserService, private toastr:ToastrService) { }
+    private userService:UserService, private toastr:ToastrService, private customerService:CustomerService,
+    private router:Router) { }
 
   ngOnInit(): void {
     this.checkUserClaims(parseInt(this.localStorageService.getVariable("id")))
@@ -45,11 +48,7 @@ export class AdminUsersComponent implements OnInit {
     })
   }
 
-  delete(user:User){
-    console.log(user)
-  }
-
-  editClaims(userId:number){
-    console.log(userId)
+  goUpdate(userId:number){
+    this.router.navigate(["admin/user/update/" + userId]) 
   }
 }

@@ -22,6 +22,7 @@ import { CustomerUpdateComponent } from './components/customer-update/customer-u
 import { CarImageAddComponent } from './components/car-image-add/car-image-add.component';
 import { AdminRentalsComponent } from './components/admin-rentals/admin-rentals.component';
 import { AdminUsersComponent } from './components/admin-users/admin-users.component';
+import { AdminUserUpdateComponent } from './components/admin-user-update/admin-user-update.component';
 
 
 const routes: Routes = [
@@ -62,6 +63,7 @@ const routes: Routes = [
 
   {path:"user/:userId",component:UserComponent,canActivate:[LoginGuard]},
   {path:"admin/users",component:AdminUsersComponent,canActivate:[LoginGuard]},
+  {path:"admin/user/update/:userId",component:AdminUserUpdateComponent,canActivate:[LoginGuard]},
 ];
 
 @NgModule({

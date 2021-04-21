@@ -37,6 +37,7 @@ import { CustomerUpdateComponent } from './components/customer-update/customer-u
 import { CarImageAddComponent } from './components/car-image-add/car-image-add.component';
 import { AdminRentalsComponent } from './components/admin-rentals/admin-rentals.component';
 import { AdminUsersComponent } from './components/admin-users/admin-users.component';
+import { AdminUserUpdateComponent } from './components/admin-user-update/admin-user-update.component';
 
 @NgModule({
   declarations: [
@@ -68,6 +69,7 @@ import { AdminUsersComponent } from './components/admin-users/admin-users.compon
     CarImageAddComponent,
     AdminRentalsComponent,
     AdminUsersComponent,
+    AdminUserUpdateComponent,
   ],
   imports: [
     BrowserModule,

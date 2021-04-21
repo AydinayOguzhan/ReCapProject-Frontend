@@ -1,5 +1,5 @@
 export interface UserOperationClaim{
-    id:number,
+    id?:number,
     userId:number,
     operationClaimId:number
 }

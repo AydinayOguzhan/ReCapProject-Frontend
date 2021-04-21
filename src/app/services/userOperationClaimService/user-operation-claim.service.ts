@@ -14,10 +14,29 @@ export class UserOperationClaimService {
 
   constructor(private httpClient:HttpClient, private localStorageService:LocalStorageService) { }
 
+  getAll():Observable<ListResponseModel<UserOperationClaim>>{
+    let newPath = this.apiUrl + "useroperationclaims/getall"
+    return this.httpClient.get<ListResponseModel<UserOperationClaim>>(newPath)
+  }
+
   checkUserClaims(userId:number):Observable<ResponseModel>{
     let newPath = this.apiUrl + "useroperationclaims/checkifitsadmin?userId=" + userId
     return this.httpClient.get<ResponseModel>(newPath)
   }
 
+  getByUserId(userId:number):Observable<ListResponseModel<UserOperationClaim>>{
+    let newPath = this.apiUrl + "useroperationclaims/getbyuserid?userId=" + userId
+    return this.httpClient.get<ListResponseModel<UserOperationClaim>>(newPath)
+  }
+
+  delete(userOperationClaim:UserOperationClaim):Observable<ResponseModel>{
+    let newPath = this.apiUrl + "useroperationclaims/delete"
+    return this.httpClient.post<ResponseModel>(newPath,userOperationClaim) 
+  }
+
+  add(userOperationClaim:UserOperationClaim):Observable<ResponseModel>{
+    let newPath = this.apiUrl + "useroperationclaims/add"
+    return this.httpClient.post<ResponseModel>(newPath,userOperationClaim)
+  }
 
 }

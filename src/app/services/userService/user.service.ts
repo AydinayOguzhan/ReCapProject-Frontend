@@ -24,13 +24,18 @@ export class UserService {
     return this.httpClient.get<SingleResponseModel<User>>(newPath)
   }
 
-  getById(userId:number):Observable<SingleResponseModel<User>>{
+  getByUserId(userId:number):Observable<SingleResponseModel<User>>{
     let newPath = this.apiUrl + "users/getbyid?id=" + userId
     return this.httpClient.get<SingleResponseModel<User>>(newPath)
   }
 
   update(user:User):Observable<ResponseModel>{
     let newPath = this.apiUrl + "users/update"
+    return this.httpClient.post<ResponseModel>(newPath,user)
+  }
+
+  delete(user:User):Observable<ResponseModel>{
+    let newPath = this.apiUrl + "users/delete"
     return this.httpClient.post<ResponseModel>(newPath,user)
   }
 }
