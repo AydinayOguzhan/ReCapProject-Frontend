@@ -32,8 +32,7 @@ export class UserComponent implements OnInit {
       email:["",Validators.required],
       password:["",Validators.required],
       firstName:["",Validators.required],
-      lastName:["",Validators.required],
-      findex:["",Validators.required]
+      lastName:["",Validators.required]
     })
   }
 
@@ -42,7 +41,7 @@ export class UserComponent implements OnInit {
       this.currentUser = response.data
       this.waitForData = true
       this.updateUserForm.setValue({firstName:this.currentUser.firstName, lastName:this.currentUser.lastName, 
-      email:this.currentUser.email,password:"", findex:this.currentUser.findex})
+      email:this.currentUser.email,password:""})
     })
   }
 

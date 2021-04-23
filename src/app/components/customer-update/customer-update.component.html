@@ -21,6 +21,11 @@
                 <label for="email">E-mail</label>
             </div>
             <div class="form-floating">
+                <input [attr.disabled]="true" formControlName="findex" type="name" class="form-control" id="findex"
+                    placeholder="Findex">
+                <label for="floatingPassword">Findex</label>
+            </div>
+            <div class="form-floating">
                 <input formControlName="companyName" type="companyName" class="form-control" id="companyName"
                     placeholder="Company Name">
                 <label for="companyName">Company Name</label>

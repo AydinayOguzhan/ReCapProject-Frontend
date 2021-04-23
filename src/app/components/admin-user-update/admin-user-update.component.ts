@@ -11,6 +11,8 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { OperationClaimService } from 'src/app/services/operationClaimService/operation-claim.service';
 import { Claim } from 'src/app/models/claims/claims';
 import { UserOperationClaimDetail } from 'src/app/models/user/userOperationClaimDetail';
+import { CustomerService } from 'src/app/services/customerService/customer.service';
+import { Customer } from 'src/app/models/customer/customer';
 
 @Component({
   selector: 'app-admin-user-update',
@@ -22,7 +24,9 @@ export class AdminUserUpdateComponent implements OnInit {
   ifAdmin: boolean
   waitForData: boolean = false
   updateUserForm: FormGroup
+  customerForm: FormGroup
   currentUser: User
+  currentCustomer:Customer
   currentUserClaimsDetails:UserOperationClaimDetail[]
   admin:number
   operationClaims:Claim[]
@@ -30,7 +34,8 @@ export class AdminUserUpdateComponent implements OnInit {
 
   constructor(private userOperationClaimService: UserOperationClaimService, private localStorageService: LocalStorageService,
     private userService: UserService, private formBuilder: FormBuilder, private toastr: ToastrService,
-    private activatedRoute:ActivatedRoute, private operationClaimService:OperationClaimService) { }
+    private activatedRoute:ActivatedRoute, private operationClaimService:OperationClaimService,
+    private customerService:CustomerService) { }
 
   ngOnInit(): void {
     this.activatedRoute.params.subscribe(params=>{
@@ -47,8 +52,10 @@ export class AdminUserUpdateComponent implements OnInit {
         this.ifAdmin = response.success
         this.getUserById(this.currentUserId)
         this.getUserCaims(this.currentUserId)
+        this.getCustomerByUserId(this.currentUserId)
         this.getClaims()
         this.createUpdateForm()
+        this.createCustomerForm()
       } else {
         this.ifAdmin = response.success
       }
@@ -60,13 +67,21 @@ export class AdminUserUpdateComponent implements OnInit {
   createUpdateForm() {
     this.updateUserForm = this.formBuilder.group({
       id: [0, Validators.required],
-      firstName: [0, Validators.required],
+      firstName: ["", Validators.required],
       lastName: ["", Validators.required],
       email: ["", Validators.required],
       status: ["", Validators.required],
-      findex: [0, Validators.required]
     })
     this.waitForData = true
+  }
+
+  createCustomerForm() {
+    this.customerForm = this.formBuilder.group({
+      id: [0, Validators.required],
+      userId: [0, Validators.required],
+      companyName: ["",],
+      findex: [, Validators.required]
+    })
   }
 
   createClaimsForm() {
@@ -91,6 +106,19 @@ export class AdminUserUpdateComponent implements OnInit {
     }
   }
 
+  updateFindex(){
+    if (this.updateUserForm.valid) {
+      let updateUser:User = Object.assign({},this.updateUserForm.value)
+      console.log(updateUser)
+      this.userService.update(updateUser).subscribe(response=>{
+        this.toastr.success(response.message)
+        this.ngOnInit()
+      },errorResponse=>{
+        this.toastr.error(errorResponse.error.Message)
+      })
+    }
+  }
+
   claimsFormCreate(){
     this.createClaimsForm()
   }
@@ -100,12 +128,21 @@ export class AdminUserUpdateComponent implements OnInit {
       this.currentUser = response.data
       this.updateUserForm.setValue({
         id: this.currentUser.id, firstName: this.currentUser.firstName, lastName: this.currentUser.lastName,
-        status: this.currentUser.status, email: this.currentUser.email, findex: this.currentUser.findex
+        status: this.currentUser.status, email: this.currentUser.email
       })
       this.waitForData = true
-      this.toastr.info(response.message)
     }, errorResponse => {
       this.toastr.error(errorResponse.error.message)
+    })
+  }
+
+  getCustomerByUserId(userId:number){
+    this.customerService.getCustomerByUserId(userId).subscribe(response=>{
+      this.currentCustomer = response.data
+      this.customerForm.setValue({id:this.currentCustomer.id,userId:this.currentCustomer.userId,
+        companyName:this.currentCustomer.companyName,findex:this.currentCustomer.findex})
+    },errorResponse=>{
+      this.toastr.error(errorResponse.error.Message)
     })
   }
 
@@ -135,6 +172,21 @@ export class AdminUserUpdateComponent implements OnInit {
     },errorResponse=>{
       this.toastr.error(errorResponse.error.message)
     })
+  }
+
+  updateCustomer(){
+    if (this.customerForm.valid) {
+      let updateCustomer:Customer = Object.assign({},this.customerForm.value)
+      this.customerService.update(updateCustomer).subscribe(response=>{
+        this.toastr.success(response.message)
+        this.ngOnInit()
+      },errorResponse=>{
+        console.log(errorResponse.error)
+        this.toastr.error(errorResponse.error.Message)
+      })
+    }else{
+      this.toastr.error("Lütfen formu doldurunuz")
+    }
   }
 
 }

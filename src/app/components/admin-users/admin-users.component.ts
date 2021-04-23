@@ -42,7 +42,6 @@ export class AdminUsersComponent implements OnInit {
     this.userService.getAll().subscribe(response=>{
       this.users = response.data
       this.waitForData = true
-      this.toastr.info(response.message)
     },errorResponse=>{
       this.toastr.error(errorResponse.error.message)
     })

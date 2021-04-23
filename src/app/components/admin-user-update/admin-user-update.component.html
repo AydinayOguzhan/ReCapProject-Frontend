@@ -74,26 +74,8 @@
                                 </div>
                             </div>
                         </div>
-
-                        <div class="mb-3">
-                            <div class="row">
-                                <div class="col-md-3"></div>
-                                <div class="col-md-6">
-                                    <label for="findex">Findex</label>
-                                    <div class="form-group">
-                                        <input type="number" id="findex" formControlName="findex" class="form-control"
-                                            placeholder="Findex">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
                     </form>
 
-                    <div class="card-footer">
-                        <div class="d-grid gap-2">
-                            <button class="btn btn-success">Update</button>
-                        </div>
-                    </div>
                 </div>
             </div>
         </div>
@@ -101,7 +83,7 @@
         <div class="col-md-5">
             <div class="card">
                 <div class="card-header">
-                    <h5 class="title">User Informations</h5>
+                    <h5 class="title">User Operation Claims</h5>
                 </div>
                 <div class="card-body">
                     <table class="table table-stroked ">
@@ -123,13 +105,92 @@
                         </tbody>
                     </table>
                     <!-- Button trigger modal -->
-                    <button type="button" (click)="claimsFormCreate()" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                    <button type="button" (click)="claimsFormCreate()" class="btn btn-primary" data-bs-toggle="modal"
+                        data-bs-target="#exampleModal">
                         Add Claim
                     </button>
                 </div>
             </div>
         </div>
+
     </div>
+
+    <!--//////////////////////////////////////////////////////////////////////////////-->
+    <br>
+    <div class="row">
+        <div class="col-md-1"></div>
+        <div class="col-md-10">
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="title">Customer Informations</h5>
+                </div>
+                <div class="card-body">
+                    <form [formGroup]="customerForm">
+                        <div class="mb-3">
+                            <div class="row">
+                                <div class="col-md-3"></div>
+                                <div class="col-md-6">
+                                    <label for="id">Id</label>
+                                    <div class="form-group">
+                                        <input [attr.disabled]="true" type="number" id="id" formControlName="id"
+                                            class="form-control" placeholder="Id">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="mb-3">
+                            <div class="row">
+                                <div class="col-md-3"></div>
+                                <div class="col-md-6">
+                                    <label for="userId">User Id</label>
+                                    <div class="form-group">
+                                        <input [attr.disabled]="true" type="text" id="User Id"
+                                            formControlName="userId" class="form-control" placeholder="User Id">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="mb-3">
+                            <div class="row">
+                                <div class="col-md-3"></div>
+                                <div class="col-md-6">
+                                    <label for="companyName">Company Name</label>
+                                    <div class="form-group">
+                                        <input [attr.disabled]="true" type="text" id="companyName"
+                                            formControlName="companyName" class="form-control" placeholder="Company Name">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="mb-3">
+                            <div class="row">
+                                <div class="col-md-3"></div>
+                                <div class="col-md-6">
+                                    <label for="findex">Findex</label>
+                                    <div class="form-group">
+                                        <input type="number" id="findex" formControlName="findex"
+                                            class="form-control" placeholder="findex">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+
+                    <div class="card-footer">
+                        <div class="d-grid gap-2">
+                            <button class="btn btn-success" (click)="updateCustomer()">Update Customer Informations</button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-1"></div>
+    <br><br>
 </div>
 
 
@@ -151,9 +212,9 @@
                                 <div class="form-group">
                                     <select class="form-select" formControlName="claim">
                                         <option disabled selected value=0>Select Claim</option>
-                                        <option *ngFor="let claim of operationClaims" 
-                                        [ngValue]="claim.id">{{claim.name}}</option>
-                                      </select>
+                                        <option *ngFor="let claim of operationClaims" [ngValue]="claim.id">
+                                            {{claim.name}}</option>
+                                    </select>
                                 </div>
                             </div>
                         </div>

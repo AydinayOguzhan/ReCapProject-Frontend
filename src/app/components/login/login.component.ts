@@ -44,7 +44,7 @@ export class LoginComponent implements OnInit {
           window.location.reload()
         })
       },errorResponse=>{
-        this.toastr.error(errorResponse.error.message)
+        this.toastr.error(errorResponse.error.Message)
       })
     }else{
       this.toastr.error("Lütfen formu doldurunuz")
@@ -56,7 +56,7 @@ export class LoginComponent implements OnInit {
       this.localStorageService.setVariable("id", response.data.id.toString())
       console.log(response.data.id)
     },errorResponse=>{
-      console.log(errorResponse.error.message)
+      console.log(errorResponse.error.Message)
     })
   }
 

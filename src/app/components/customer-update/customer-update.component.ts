@@ -31,6 +31,7 @@ export class CustomerUpdateComponent implements OnInit {
       firstName: ["", Validators.required],
       lastName: ["", Validators.required],
       email: ["", Validators.required],
+      findex: ["", Validators.required],
       companyName: ["", Validators.required],
     })
   }
@@ -40,7 +41,7 @@ export class CustomerUpdateComponent implements OnInit {
     if (updateData.companyName == "") {
     }else{
       let updateCustomer:Customer = {id:this.currentCustomerDetail.customerId, userId:this.currentCustomerDetail.userId,
-        companyName:updateData.companyName}
+        companyName:updateData.companyName,findex:100}
         this.customerService.update(updateCustomer).subscribe(response=>{
           this.toastr.info(response.message)
           this.ngOnInit()
@@ -61,14 +62,15 @@ export class CustomerUpdateComponent implements OnInit {
   getCustomerDetailByUserId(userId: number) {
     this.customerService.getCustomerDetailByUserId(userId).subscribe(response => {
       if (response.data == null) {
-        let newCustomer: Customer = { userId: parseInt(this.localStorageService.getVariable("id")), companyName: "" }
+        let newCustomer: Customer = { userId: parseInt(this.localStorageService.getVariable("id")), companyName: ""}
         this.addCustomer(newCustomer)
         window.location.reload()
       } else {
         this.currentCustomerDetail = response.data
         this.customerUpdateForm.setValue({
           firstName: this.currentCustomerDetail.firstName, lastName: this.currentCustomerDetail.lastName,
-          email: this.currentCustomerDetail.email, companyName: this.currentCustomerDetail.companyName
+          email: this.currentCustomerDetail.email, companyName: this.currentCustomerDetail.companyName,
+          findex:this.currentCustomerDetail.findex
         })
       }
     }, errorResponse => {

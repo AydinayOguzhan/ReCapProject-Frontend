@@ -12,12 +12,12 @@ import { UserOperationClaimService } from 'src/app/services/userOperationClaimSe
   styleUrls: ['./customer.component.css']
 })
 export class CustomerComponent implements OnInit {
-  customers:CustomerDetail[] = []
+  customers: CustomerDetail[] = []
   ifAdmin: boolean
   waitForData: boolean = false
 
-  constructor(private customerService:CustomerService,private userOperationClaimService: UserOperationClaimService,
-    private localStorageService: LocalStorageService, private toastr:ToastrService) { }
+  constructor(private customerService: CustomerService, private userOperationClaimService: UserOperationClaimService,
+    private localStorageService: LocalStorageService, private toastr: ToastrService) { }
 
   ngOnInit(): void {
     this.checkUserClaims(parseInt(this.localStorageService.getVariable("id")))
@@ -36,22 +36,24 @@ export class CustomerComponent implements OnInit {
     })
   }
 
-  getCustomers(){
-    this.customerService.getCustomers().subscribe(response=>{
+  getCustomers() {
+    this.customerService.getCustomersDetails().subscribe(response => {
       this.customers = response.data
       this.waitForData = true
-      this.toastr.info(response.message)
-    },errorResponse=>{
+    }, errorResponse => {
       this.toastr.error(errorResponse.error.message)
     })
   }
 
-  delete(customer:CustomerDetail){
-    let deleteCustomer:Customer = {id:customer.customerId, userId:customer.userId, companyName:customer.companyName}
-    this.customerService.delete(deleteCustomer).subscribe(response=>{
+  delete(customer: CustomerDetail) {
+    let deleteCustomer: Customer = {
+      id: customer.customerId, userId: customer.userId, companyName: customer.companyName,
+      findex: customer.findex
+    }
+    this.customerService.delete(deleteCustomer).subscribe(response => {
       this.toastr.success(response.message)
       this.ngOnInit()
-    },errorResponse=>{
+    }, errorResponse => {
       this.toastr.error(errorResponse.error.message)
     })
   }
