@@ -91,7 +91,7 @@
                             <tr>
                                 <th>Id</th>
                                 <th>User Id</th>
-                                <th>Claim Id</th>
+                                <th>Claim</th>
                                 <th></th>
                             </tr>
                         </thead>
@@ -100,7 +100,7 @@
                                 <td>{{claim.id}}</td>
                                 <td>{{claim.userId}}</td>
                                 <td>{{claim.operationClaimName}}</td>
-                                <td><button class="btn btn-danger" (click)="delete(claim)">Delete</button></td>
+                                <td><button [disabled]="isDefaultClaim(claim.operationClaimId)" class="btn btn-danger" (click)="delete(claim)">Delete</button></td>
                             </tr>
                         </tbody>
                     </table>

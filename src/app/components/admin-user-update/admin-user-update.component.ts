@@ -31,6 +31,7 @@ export class AdminUserUpdateComponent implements OnInit {
   admin:number
   operationClaims:Claim[]
   claimsForm:FormGroup
+  isUserClaim:boolean
 
   constructor(private userOperationClaimService: UserOperationClaimService, private localStorageService: LocalStorageService,
     private userService: UserService, private formBuilder: FormBuilder, private toastr: ToastrService,
@@ -170,7 +171,8 @@ export class AdminUserUpdateComponent implements OnInit {
       this.toastr.success(response.message)
       this.ngOnInit()
     },errorResponse=>{
-      this.toastr.error(errorResponse.error.message)
+      this.toastr.error(errorResponse.error.Message)
+      console.log(errorResponse.error)
     })
   }
 
@@ -186,6 +188,15 @@ export class AdminUserUpdateComponent implements OnInit {
       })
     }else{
       this.toastr.error("Lütfen formu doldurunuz")
+    }
+  }
+
+  isDefaultClaim(claim:number){
+    let defaultUserClaim:number = 2
+    if (claim === defaultUserClaim) {
+      return true
+    }else{
+      return false
     }
   }
 
