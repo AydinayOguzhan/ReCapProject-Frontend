@@ -16,13 +16,19 @@ export class CustomerUpdateComponent implements OnInit {
   customerUpdateForm: FormGroup
   waitForData: boolean
   currentCustomerDetail: CustomerDetail
+  currentUserId: number
 
   constructor(private formBuilder: FormBuilder, private toastr: ToastrService,
     private router: Router, private activatedRoute: ActivatedRoute, private customerService: CustomerService,
     private localStorageService: LocalStorageService) { }
 
   ngOnInit(): void {
-    this.getCustomerDetailByUserId(parseInt(this.localStorageService.getVariable("id")))
+    this.currentUserId = parseInt(this.localStorageService.getVariable("id"))
+    if (isNaN(this.currentUserId)) {
+      this.toastr.error("Lütfen sistemden çıkış yapıp tekrar giriniz")
+    }else{
+      this.getCustomerDetailByUserId(this.currentUserId)
+    }
     this.createUpdateForm()
   }
 
@@ -37,18 +43,20 @@ export class CustomerUpdateComponent implements OnInit {
   }
 
   update() {
-    let updateData = Object.assign({},this.customerUpdateForm.value)
+    let updateData = Object.assign({}, this.customerUpdateForm.value)
     if (updateData.companyName == "") {
-    }else{
-      let updateCustomer:Customer = {id:this.currentCustomerDetail.customerId, userId:this.currentCustomerDetail.userId,
-        companyName:updateData.companyName,findex:100}
-        this.customerService.update(updateCustomer).subscribe(response=>{
-          this.toastr.info(response.message)
-          this.ngOnInit()
-        },errorResponse=>{
-          this.toastr.error(errorResponse.error.message)
-        })
+    } else {
+      let updateCustomer: Customer = {
+        id: this.currentCustomerDetail.customerId, userId: this.currentCustomerDetail.userId,
+        companyName: updateData.companyName, findex: 100
       }
+      this.customerService.update(updateCustomer).subscribe(response => {
+        this.toastr.info(response.message)
+        this.ngOnInit()
+      }, errorResponse => {
+        this.toastr.error(errorResponse.error.message)
+      })
+    }
   }
 
   addCustomer(customer: Customer) {
@@ -62,20 +70,22 @@ export class CustomerUpdateComponent implements OnInit {
   getCustomerDetailByUserId(userId: number) {
     this.customerService.getCustomerDetailByUserId(userId).subscribe(response => {
       if (response.data == null) {
-        let newCustomer: Customer = { userId: parseInt(this.localStorageService.getVariable("id")), companyName: ""}
+        let newCustomer: Customer = { userId: this.currentUserId, companyName: "" }
         this.addCustomer(newCustomer)
         window.location.reload()
+
       } else {
         this.currentCustomerDetail = response.data
         this.customerUpdateForm.setValue({
           firstName: this.currentCustomerDetail.firstName, lastName: this.currentCustomerDetail.lastName,
           email: this.currentCustomerDetail.email, companyName: this.currentCustomerDetail.companyName,
-          findex:this.currentCustomerDetail.findex
+          findex: this.currentCustomerDetail.findex
         })
       }
     }, errorResponse => {
       this.toastr.error(errorResponse.error)
       console.log(errorResponse.error)
     })
+
   }
 }
