@@ -3,6 +3,7 @@
 <table *ngIf="waitForData" class="table table-striped table-secondary table-bordered">
     <thead>
         <tr>
+            <th></th>
             <th>Name</th>
             <th>Company Name</th>
             <th>Brand</th>
@@ -14,6 +15,7 @@
     </thead>
     <tbody>
         <tr *ngFor="let rental of rentals">
+            <td><button class="btn btn-secondary" (click)="goToUser(rental.userId)">Go to user</button></td>
             <td>{{rental.firstName}} {{rental.lastName}}</td>
             <td>{{rental.companyName}}</td>
             <td>{{rental.brandName}}</td>

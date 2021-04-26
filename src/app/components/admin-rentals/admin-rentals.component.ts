@@ -69,4 +69,8 @@ export class AdminRentalsComponent implements OnInit {
       return "btn btn-outline-success invisible"
     }
   }
+
+  goToUser(userId:number){
+    this.router.navigate(["admin/user/update/" + userId])
+  }
 }
