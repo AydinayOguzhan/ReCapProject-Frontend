@@ -27,24 +27,7 @@ export class RentalComponent implements OnInit {
   ngOnInit(): void {
     this.userId = parseInt(this.localStorageService.getVariable("id"))
     this.checkIFCustomer(this.userId)
-
-    // this.getRentalDetailByUserId(this.userId)
   }
-
-  //-------------------------------------------------------------------------
-  getRentalDetailByUserId(userId: number) {
-    this.rentService.getRentalDetailByUserId(userId).subscribe(response => {
-      if (response.data.length <= 0) {
-        this.waitForData = false
-      } else {
-        this.rentals = response.data
-        this.waitForData = true
-      }
-    }, errorResponse => {
-      this.toastr.error(errorResponse.error.Message)
-    })
-  }
-  //-------------------------------------------------------------------------
 
   getRentalDetailsByCustomerId(customerId: number) {
     this.rentService.getRentalDetailsByCustomerId(customerId).subscribe(response => {
@@ -66,12 +49,11 @@ export class RentalComponent implements OnInit {
     this.customerService.getCustomerByUserId(userId).subscribe(response => {
       if (response.data != null) {
         this.currentCustomer = response.data
-        console.log(this.currentCustomer)
         this.getRentalDetailsByCustomerId(this.currentCustomer.id)
-        // this.waitForCustomer == true
+        this.waitForCustomer = true
       } else {
         console.log("else")
-        this.waitForCustomer == false
+        this.waitForCustomer = false
       }
     }, errorResponse => {
       this.toastr.error(errorResponse.error.Message)
