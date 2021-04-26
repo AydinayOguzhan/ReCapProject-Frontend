@@ -1,10 +1,12 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { Customer } from 'src/app/models/customer/customer';
 import { CustomerDetail } from 'src/app/models/customer/customerDetail';
 import { CustomerService } from 'src/app/services/customerService/customer.service';
 import { LocalStorageService } from 'src/app/services/localStorageService/local-storage.service';
 import { UserOperationClaimService } from 'src/app/services/userOperationClaimService/user-operation-claim.service';
+import { UserService } from 'src/app/services/userService/user.service';
 
 @Component({
   selector: 'app-customer',
@@ -15,12 +17,15 @@ export class CustomerComponent implements OnInit {
   customers: CustomerDetail[] = []
   ifAdmin: boolean
   waitForData: boolean = false
+  currentUser:number
 
   constructor(private customerService: CustomerService, private userOperationClaimService: UserOperationClaimService,
-    private localStorageService: LocalStorageService, private toastr: ToastrService) { }
+    private localStorageService: LocalStorageService, private toastr: ToastrService, 
+    private router:Router, private userService:UserService) { }
 
   ngOnInit(): void {
-    this.checkUserClaims(parseInt(this.localStorageService.getVariable("id")))
+    this.currentUser = parseInt(this.localStorageService.getVariable("id"))
+    this.checkUserClaims(this.currentUser)
   }
 
   checkUserClaims(userId: number) {
@@ -56,5 +61,9 @@ export class CustomerComponent implements OnInit {
     }, errorResponse => {
       this.toastr.error(errorResponse.error.message)
     })
+  }
+
+  goToUser(userId:number){
+    this.router.navigate(["admin/user/update/" + userId])
   }
 }
