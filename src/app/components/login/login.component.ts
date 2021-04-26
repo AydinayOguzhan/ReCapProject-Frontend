@@ -44,7 +44,7 @@ export class LoginComponent implements OnInit {
           window.location.reload()
         })
       },errorResponse=>{
-        this.toastr.error(errorResponse.error.Message)
+        this.toastr.error(errorResponse.error.message)
       })
     }else{
       this.toastr.error("Lütfen formu doldurunuz")

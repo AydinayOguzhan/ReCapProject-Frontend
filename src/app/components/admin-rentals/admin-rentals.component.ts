@@ -48,13 +48,14 @@ export class AdminRentalsComponent implements OnInit {
   }
 
   returnCar(rental:Rental){
+    console.log(rental)
     let today = new Date()
     rental.returnDate = today
     this.rentService.update(rental).subscribe(response=>{
       this.ngOnInit()
       this.toastr.info("Car returned")
     },errorResponse=>{
-      console.log(errorResponse.error.message)
+      console.log(errorResponse.error.Message)
     })
   }
 
