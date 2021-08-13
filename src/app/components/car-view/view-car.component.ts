@@ -97,4 +97,9 @@ export class ViewCarComponent implements OnInit {
     let newUrl = "admin/update/car/" + carId
     this.router.navigateByUrl(newUrl)
   }
+
+  setImageSource(path:string){
+    let newPath = this.sanitizer.bypassSecurityTrustUrl("https://localhost:44302/images/" + path)
+    return newPath
+  }
 }

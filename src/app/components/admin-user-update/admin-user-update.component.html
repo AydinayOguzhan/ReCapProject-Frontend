@@ -3,7 +3,7 @@
 <div *ngIf="waitForData" class="content">
     <div class="row">
         <!-- <div class="col-md-1"></div> -->
-        <div class="col-md-7">
+        <div class="col-md-5">
             <div class="card">
                 <div class="card-header">
                     <h5 class="title">User Informations</h5>
@@ -12,8 +12,8 @@
                     <form [formGroup]="updateUserForm">
                         <div class="mb-3">
                             <div class="row">
-                                <div class="col-md-3"></div>
-                                <div class="col-md-6">
+                                <div class="col-md-2"></div>
+                                <div class="col-md-7">
                                     <label for="id">Id</label>
                                     <div class="form-group">
                                         <input [attr.disabled]="true" type="number" id="id" formControlName="id"
@@ -25,8 +25,8 @@
 
                         <div class="mb-3">
                             <div class="row">
-                                <div class="col-md-3"></div>
-                                <div class="col-md-6">
+                                <div class="col-md-2"></div>
+                                <div class="col-md-7">
                                     <label for="firstName">First Name</label>
                                     <div class="form-group">
                                         <input [attr.disabled]="true" type="text" id="firstName"
@@ -38,8 +38,8 @@
 
                         <div class="mb-3">
                             <div class="row">
-                                <div class="col-md-3"></div>
-                                <div class="col-md-6">
+                                <div class="col-md-2"></div>
+                                <div class="col-md-7">
                                     <label for="lastName">Last Name</label>
                                     <div class="form-group">
                                         <input [attr.disabled]="true" type="text" id="lastName"
@@ -51,8 +51,8 @@
 
                         <div class="mb-3">
                             <div class="row">
-                                <div class="col-md-3"></div>
-                                <div class="col-md-6">
+                                <div class="col-md-2"></div>
+                                <div class="col-md-7">
                                     <label for="email">E-mail</label>
                                     <div class="form-group">
                                         <input [attr.disabled]="true" type="email" id="email" formControlName="email"
@@ -64,8 +64,8 @@
 
                         <div class="mb-3">
                             <div class="row">
-                                <div class="col-md-3"></div>
-                                <div class="col-md-6">
+                                <div class="col-md-2"></div>
+                                <div class="col-md-7">
                                     <label for="status">Status</label>
                                     <div class="form-group">
                                         <input [attr.disabled]="true" type="text" id="status" formControlName="status"
@@ -79,8 +79,82 @@
                 </div>
             </div>
         </div>
+
         <!--//////////////////////////////////////////////////////////////////////////////-->
-        <div class="col-md-5">
+
+        <div class="col-md-4">
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="title">Customer Informations</h5>
+                </div>
+                <div class="card-body">
+                    <form [formGroup]="customerForm">
+                        <div class="mb-3">
+                            <div class="row">
+                                <div class="col-md-2"></div>
+                                <div class="col-md-7">
+                                    <label for="id">Id</label>
+                                    <div class="form-group">
+                                        <input [attr.disabled]="true" type="number" id="id" formControlName="id"
+                                            class="form-control" placeholder="Id">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="mb-3">
+                            <div class="row">
+                                <div class="col-md-2"></div>
+                                <div class="col-md-7">
+                                    <label for="userId">User Id</label>
+                                    <div class="form-group">
+                                        <input [attr.disabled]="true" type="text" id="User Id"
+                                            formControlName="userId" class="form-control" placeholder="User Id">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="mb-3">
+                            <div class="row">
+                                <div class="col-md-2"></div>
+                                <div class="col-md-7">
+                                    <label for="companyName">Company Name</label>
+                                    <div class="form-group">
+                                        <input [attr.disabled]="true" type="text" id="companyName"
+                                            formControlName="companyName" class="form-control" placeholder="Company Name">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="mb-3">
+                            <div class="row">
+                                <div class="col-md-2"></div>
+                                <div class="col-md-7">
+                                    <label for="findex">Findex</label>
+                                    <div class="form-group">
+                                        <input type="number" id="findex" formControlName="findex"
+                                            class="form-control" placeholder="findex">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+
+                    <div class="card-footer">
+                        <div class="d-grid gap-2">
+                            <button class="btn btn-success" (click)="updateCustomer()">Update Customer Informations</button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+
+        <!--//////////////////////////////////////////////////////////////////////////////-->
+        <div class="col-md-3">
             <div class="card">
                 <div class="card-header">
                     <h5 class="title">User Operation Claims</h5>
@@ -106,96 +180,25 @@
                     </table>
                     <!-- Button trigger modal -->
                     <button type="button" (click)="claimsFormCreate()" class="btn btn-primary" data-bs-toggle="modal"
-                        data-bs-target="#exampleModal">
+                        data-bs-target="#claimModal">
                         Add Claim
                     </button>
                 </div>
             </div>
+            <br>
+            <div><button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteUserInformationsModal"
+                >Delete All User Informations</button></div>
         </div>
+        
 
     </div>
 
     <!--//////////////////////////////////////////////////////////////////////////////-->
     <br>
-    <div class="row">
-        <div class="col-md-1"></div>
-        <div class="col-md-10">
-            <div class="card">
-                <div class="card-header">
-                    <h5 class="title">Customer Informations</h5>
-                </div>
-                <div class="card-body">
-                    <form [formGroup]="customerForm">
-                        <div class="mb-3">
-                            <div class="row">
-                                <div class="col-md-3"></div>
-                                <div class="col-md-6">
-                                    <label for="id">Id</label>
-                                    <div class="form-group">
-                                        <input [attr.disabled]="true" type="number" id="id" formControlName="id"
-                                            class="form-control" placeholder="Id">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+    
 
-                        <div class="mb-3">
-                            <div class="row">
-                                <div class="col-md-3"></div>
-                                <div class="col-md-6">
-                                    <label for="userId">User Id</label>
-                                    <div class="form-group">
-                                        <input [attr.disabled]="true" type="text" id="User Id"
-                                            formControlName="userId" class="form-control" placeholder="User Id">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="mb-3">
-                            <div class="row">
-                                <div class="col-md-3"></div>
-                                <div class="col-md-6">
-                                    <label for="companyName">Company Name</label>
-                                    <div class="form-group">
-                                        <input [attr.disabled]="true" type="text" id="companyName"
-                                            formControlName="companyName" class="form-control" placeholder="Company Name">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="mb-3">
-                            <div class="row">
-                                <div class="col-md-3"></div>
-                                <div class="col-md-6">
-                                    <label for="findex">Findex</label>
-                                    <div class="form-group">
-                                        <input type="number" id="findex" formControlName="findex"
-                                            class="form-control" placeholder="findex">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </form>
-
-                    <div class="card-footer">
-                        <div class="d-grid gap-2">
-                            <button class="btn btn-success" (click)="updateCustomer()">Update Customer Informations</button>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="col-md-1"></div>
-    <br><br>
-</div>
-
-
-<!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<!-- Add Claim Modal -->
+<div class="modal fade" id="claimModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -224,6 +227,29 @@
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                 <button type="button" (click)="addClaim()" class="btn btn-success">Add</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- Delete All User Informations Modal -->
+<div class="modal fade" id="deleteUserInformationsModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Delete All User Informations</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <mark><strong>
+                    This process deletes everything about this user, including customer and authorization information!
+                    This action is irreversible!
+                </strong></mark>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" (click)="deleteEverything()" class="btn btn-danger">Delete</button>
             </div>
         </div>
     </div>

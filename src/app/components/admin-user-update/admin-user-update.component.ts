@@ -200,4 +200,10 @@ export class AdminUserUpdateComponent implements OnInit {
     }
   }
 
+
+  deleteEverything(){
+    console.log(this.currentUser)
+    console.log(this.currentCustomer)
+    console.log(this.currentUserClaimsDetails)
+  }
 }

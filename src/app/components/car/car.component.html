@@ -19,7 +19,30 @@
     </div>
 
     <div class="col-md-10">
-        <table class="table table-striped table-dark table-bordered">
+
+        <div  class="row row-cols-1 row-cols-md-5 g-4">
+            <div class="col" *ngFor="let car of cars |brandFilter:filterText" >
+                <div class="card h-100">
+                    <div class="card-body">
+                        <img [src]="setImageSource(car.imagePath)" class="card-img-top" alt="Resim">
+                        <h3 class="card-title">{{car.brandName}}</h3>
+                        <h4 class="card-title">{{car.colorName}}</h4>
+                        <h6 class="card-title">{{car.modelYear}}</h6>
+                        <h6 class="card-title">{{car.dailyPrice | currency}}</h6>
+                        <p class="card-text">{{car.carDescription}}</p>
+                        <div>
+                            <button class="btn btn-outline-primary" (click)="setCurrentCar(car)"routerLink="/cardetails/{{car.carId}}"
+                            >Detaylar</button>
+                        </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        
+
+
+
+        <!-- <table class="table table-striped table-dark table-bordered">
             <thead>
                 <tr>
                     <th>Brand</th>
@@ -41,6 +64,6 @@
                     <td>{{car.carDescription}}</td>
                 </tr>
             </tbody>
-        </table>
+        </table> -->
     </div>
 </div>

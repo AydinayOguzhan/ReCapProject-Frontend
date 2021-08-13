@@ -5,6 +5,7 @@ export interface CarDetail{
     modelYear:number,
     dailyPrice:number,
     carDescription:string,
-    findex:number
+    findex:number,
+    carImage:string
     
 }

@@ -92,7 +92,7 @@ export class RentComponent implements OnInit {
             }
             this.toastr.success(response.message)
           }, errorResponse => {
-            console.log(errorResponse.message)
+            // console.log(errorResponse.message)
             this.toastr.error(errorResponse.error.message)
           })
         }, errorResponse => {
