@@ -11,7 +11,8 @@ import { UserOperationClaimDetail } from 'src/app/models/user/userOperationClaim
   providedIn: 'root'
 })
 export class UserService {
-  apiUrl = "https://localhost:44302/api/"
+  // apiUrl = "https://localhost:44302/api/"
+  apiUrl = "https://carapi.aydinayoguzhan.com/api/"
 
   constructor(private httpClient:HttpClient) { }
 

@@ -40,12 +40,13 @@ export class RegisterComponent implements OnInit {
         this.localStorageService.setVariable("token",response.data.token)
         this.localStorageService.setVariable("email",registerModel.email)
         this.getUserByEmail(registerModel.email)
-        this.router.navigate(["cars"])
+        this.router.navigate(["/"])
         this.toastr.info(response.message).onShown.subscribe(()=>{
           window.location.reload()
         })
       },errorResult=>{
         this.toastr.error(errorResult.error.message)
+        console.log(errorResult)
       })
     }else{
       this.toastr.error("Lütfen formu doldurunuz")

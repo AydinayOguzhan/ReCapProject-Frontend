@@ -11,7 +11,8 @@ import { SingleResponseModel } from 'src/app/models/singleResponseModel';
   providedIn: 'root'
 })
 export class CustomerService {
-  apiUrl = "https://localhost:44302/api/"
+  // apiUrl = "https://localhost:44302/api/"
+  apiUrl = "https://carapi.aydinayoguzhan.com/api/"
 
   constructor(private httpClient:HttpClient) { }
 

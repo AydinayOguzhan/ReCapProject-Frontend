@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { empty } from 'rxjs';
 import { Brand } from 'src/app/models/brand/brand';
 import { BrandService } from 'src/app/services/brandService/brand.service';
 
@@ -13,7 +12,8 @@ export class BrandComponent implements OnInit {
   currentBrand:Brand
   emptyBrand:Brand = {id:0, brandName : ""}
 
-  constructor(private brandService:BrandService) { }
+  constructor(private brandService:BrandService) {
+   }
 
   ngOnInit(): void {
     this.getBrands();

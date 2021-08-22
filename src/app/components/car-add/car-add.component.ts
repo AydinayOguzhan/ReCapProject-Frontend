@@ -67,8 +67,8 @@ export class CarAddComponent implements OnInit {
         this.router.navigate(["admin/view/car"])
         this.toastr.info(response.message)
       }, responseError => {
-        console.log(responseError.error.errors)
-        this.toastr.error(responseError.error.ValidationErrors)
+        console.log(responseError.error.Message)
+        this.toastr.error(responseError.error.Message)
         if (responseError.error.ValidationErrors.length > 0) {
           for (let i = 0; i < responseError.error.ValidationErrors.length; i++) {
             this.toastr.error(responseError.error.ValidationErrors[i].ErrorMessage)

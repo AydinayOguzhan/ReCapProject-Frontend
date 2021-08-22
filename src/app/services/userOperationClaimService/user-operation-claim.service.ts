@@ -11,7 +11,8 @@ import { LocalStorageService } from '../localStorageService/local-storage.servic
   providedIn: 'root'
 })
 export class UserOperationClaimService {
-  apiUrl = "https://localhost:44302/api/"
+  // apiUrl = "https://localhost:44302/api/"
+  apiUrl = "https://carapi.aydinayoguzhan.com/api/"
 
   constructor(private httpClient:HttpClient, private localStorageService:LocalStorageService) { }
 

@@ -8,7 +8,7 @@
     <div class="col" *ngFor="let car of carDetails">
         <div class="card h-100">
             <div class="card-body">
-                <img [src]="setImageSource(car.imagePath)" class="card-img-top" alt="Resim">
+                <img [src]="setImageSource(car.imageLink)" class="card-img-top" alt="Resim">
                 <h3 class="card-title">{{car.brandName}}</h3>
                 <h4 class="card-title">{{car.colorName}}</h4>
                 <h6 class="card-title">{{car.modelYear}}</h6>

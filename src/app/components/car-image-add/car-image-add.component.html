@@ -35,7 +35,7 @@
         <div class="row row-cols-1 row-cols-md-2 g-4">
             <div *ngFor="let carImage of carImages" class="col">
                 <div class="card">
-                    <img [src]="setImageSource(carImage.imagePath)" class="card-img-top" alt="...">
+                    <img [src]="setImageSource(carImage.imageLink, carImage.imagePath)" class="card-img-top" alt="...">
                     <div class="card-body">
                         <!-- <h5 class="card-title">Card title</h5> -->
                         <p class="card-text text-end"><button *ngIf="isDefault" (click)="delete(carImage)" class="btn btn-danger">Delete</button></p>

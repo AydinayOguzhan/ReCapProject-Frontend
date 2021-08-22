@@ -29,7 +29,8 @@ export class CarDetailComponent implements OnInit {
   }
 
   setImageSource(path:string){
-    let newPath = this.sanitizer.bypassSecurityTrustUrl("https://localhost:44302/images/" + path)
+    // let newPath = this.sanitizer.bypassSecurityTrustUrl("https://localhost:44302/images/" + path)
+    let newPath = this.sanitizer.bypassSecurityTrustUrl(path)
     return newPath
   }
 

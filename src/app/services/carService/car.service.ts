@@ -12,7 +12,8 @@ import { CarDetail } from 'src/app/models/carDetails/carDetail';
   providedIn: 'root'
 })
 export class CarService {
-  apiUrl = "https://localhost:44302/api/"
+  // apiUrl = "https://localhost:44302/api/"
+  apiUrl = "https://carapi.aydinayoguzhan.com/api/"
 
   constructor(private httpClient:HttpClient) { }
 

@@ -6,6 +6,6 @@ export interface CarDetail{
     dailyPrice:number,
     carDescription:string,
     findex:number,
-    carImage:string
-    
+    imagePath:string,
+    imageLink:string
 }

@@ -7,7 +7,6 @@ import { CarImage } from 'src/app/models/carImage/carImage';
 import { CarDetailService } from 'src/app/services/carDetailService/car-detail.service';
 import { CarService } from 'src/app/services/carService/car.service';
 import { DomSanitizer } from '@angular/platform-browser';
-import { VirtualTimeScheduler } from 'rxjs';
 import { UserOperationClaimService } from 'src/app/services/userOperationClaimService/user-operation-claim.service';
 import { LocalStorageService } from 'src/app/services/localStorageService/local-storage.service';
 
@@ -52,6 +51,7 @@ export class ViewCarComponent implements OnInit {
     this.carService.getCars().subscribe(response => {
       this.carDetails = response.data
       this.waitForData = true
+      console.log(this.carDetails)
     }, errorResult => {
       this.toastr.error("Bir hata oluştu", "Üzgünüz")
     })
@@ -99,7 +99,8 @@ export class ViewCarComponent implements OnInit {
   }
 
   setImageSource(path:string){
-    let newPath = this.sanitizer.bypassSecurityTrustUrl("https://localhost:44302/images/" + path)
+    // let newPath = this.sanitizer.bypassSecurityTrustUrl("https://localhost:44302/images/" + path)
+    let newPath = this.sanitizer.bypassSecurityTrustUrl(path)
     return newPath
   }
 }

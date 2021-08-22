@@ -13,7 +13,8 @@ import { LocalStorageService } from '../localStorageService/local-storage.servic
   providedIn: 'root'
 })
 export class AuthService {
-  apiUrl = "https://localhost:44302/api/"
+  // apiUrl = "https://localhost:44302/api/"
+  apiUrl = "https://carapi.aydinayoguzhan.com/api/"
   logged:boolean
 
   constructor(private httpClient: HttpClient, private localStorageService:LocalStorageService) { }

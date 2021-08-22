@@ -39,6 +39,7 @@ import { AdminRentalsComponent } from './components/admin-rentals/admin-rentals.
 import { AdminUsersComponent } from './components/admin-users/admin-users.component';
 import { AdminUserUpdateComponent } from './components/admin-user-update/admin-user-update.component';
 
+
 @NgModule({
   declarations: [
     AppComponent,

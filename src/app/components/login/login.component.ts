@@ -38,7 +38,7 @@ export class LoginComponent implements OnInit {
         this.localStorageService.setVariable("token",response.data.token)
         this.localStorageService.setVariable("email",user.email)
         this.getUserByEmail(user.email)
-        this.router.navigate(["cars"])
+        this.router.navigate(["/"])
         // window.location.replace("/cars")
         this.toastr.info(response.message).onShown.subscribe(()=>{
           window.location.reload()

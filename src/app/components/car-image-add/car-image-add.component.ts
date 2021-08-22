@@ -81,7 +81,8 @@ export class CarImageAddComponent implements OnInit {
       this.ngOnInit()
       this.toastr.info(response.message)
     }, errorResponse => {
-      this.toastr.error(errorResponse.error.message)
+      console.log(errorResponse)
+      this.toastr.error(errorResponse.error.Message)
     })
   }
 
@@ -93,14 +94,15 @@ export class CarImageAddComponent implements OnInit {
     })
   }
 
-  setImageSource(path: string) {
-    let newPath = this.sanitizer.bypassSecurityTrustUrl("https://localhost:44302/images/" + path)
-    this.checkIfDefault(path)
+  setImageSource(path: string, imageName:string) {
+    // let newPath = this.sanitizer.bypassSecurityTrustUrl("https://carapi.aydinayoguzhan.com/images/" + path)
+    let newPath = this.sanitizer.bypassSecurityTrustUrl(path)
+    this.checkIfDefault(imageName)
     return newPath
   }
 
   checkIfDefault(path: string) {
-    if (path == "default.jpg")
+    if (path == "default")
       this.isDefault = false
     else
       this.isDefault = true

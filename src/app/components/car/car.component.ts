@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Car } from 'src/app/models/car/car';
 import { CarDetail } from 'src/app/models/carDetails/carDetail';
 import { CarService } from 'src/app/services/carService/car.service';
 import { DomSanitizer } from '@angular/platform-browser';
@@ -15,8 +14,7 @@ export class CarComponent implements OnInit {
   currentCar:CarDetail
   filterText:string=""
   
-  
-  constructor(private carService: CarService, private activatedRoute:ActivatedRoute,private sanitizer:DomSanitizer) { }
+  constructor(private carService: CarService, private activatedRoute:ActivatedRoute,private sanitizer:DomSanitizer) {}
 
   ngOnInit(): void {
     this.activatedRoute.params.subscribe(params=>{
@@ -46,6 +44,8 @@ export class CarComponent implements OnInit {
   getCarsByColorId(colorId:number){
     this.carService.getCarsByColorId(colorId).subscribe(response=>{
       this.cars = response.data
+      console.log(colorId)
+      console.log(response.data)
     })
   }
 
@@ -54,7 +54,9 @@ export class CarComponent implements OnInit {
   }
 
   setImageSource(path:string){
-    let newPath = this.sanitizer.bypassSecurityTrustUrl("https://localhost:44302/images/" + path)
+    // let newPath = this.sanitizer.bypassSecurityTrustUrl("https://localhost:44302/images/" + path)
+    console.log(path)
+    let newPath = this.sanitizer.bypassSecurityTrustUrl(path)
     return newPath
   }
 }

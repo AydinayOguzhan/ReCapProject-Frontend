@@ -42,7 +42,7 @@
 <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
   <div class="carousel-inner">
     <div *ngFor="let image of carImages let i = index" [ngClass]="{'active': i == 0}" class="carousel-item ">
-      <img [src]="setImageSource(image.imagePath)" class="d-block w-100" alt="Resim yok">
+      <img [src]="setImageSource(image.imageLink)" class="d-block w-100" alt="Resim yok">
     </div>
   </div>
   <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
